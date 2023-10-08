@@ -11,6 +11,9 @@
 
     <name>Lucifer Cloud Boot</name>
     <description>Lucifer Cloud Boot</description>
+    <modules>
+        <module>ums-boot</module>
+    </modules>
 
     <parent>
         <groupId>com.lucifer.cloud</groupId>
