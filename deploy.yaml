@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kube-lucifer
+  name: lucifer-cloud-ums
+  labels:
+    app: lucifer-cloud-ums
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lucifer-cloud-ums
+  template:
+    metadata:
+      labels:
+        app: lucifer-cloud-ums
+    spec:
+      containers:
+        - name: lucifer-cloud-ums
+          image: $image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: harbor-login
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kube-lucifer
+  labels:
+    app: lucifer-cloud-ums
+  name: lucifer-cloud-ums
+spec:
+  selector:
+    app: lucifer-cloud-ums
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30091
+  type: LoadBalancer
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: kube-lucifer
+  name: lucifer-cloud-ums
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: com.lucifer.cloud.ums
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lucifer-cloud-ums
+                port:
+                  number: 8080
+
