@@ -9,11 +9,11 @@
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>ums-boot</artifactId>
+    <artifactId>ums</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ums-boot-api</module>
-        <module>ums-boot-service</module>
+        <module>ums-api</module>
+        <module>ums-service</module>
     </modules>
 
     <properties>

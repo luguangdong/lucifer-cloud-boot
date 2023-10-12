@@ -12,7 +12,7 @@
     <name>Lucifer Cloud Boot</name>
     <description>Lucifer Cloud Boot</description>
     <modules>
-        <module>ums-boot</module>
+        <module>ums</module>
     </modules>
 
     <parent>

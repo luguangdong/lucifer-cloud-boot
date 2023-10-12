@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.lucifer.cloud</groupId>
-        <artifactId>ums-boot</artifactId>
+        <artifactId>ums</artifactId>
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>ums-boot-api</artifactId>
+    <artifactId>ums-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
