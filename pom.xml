@@ -16,7 +16,7 @@
     </modules>
 
     <parent>
-        <relativePath>../lucifer-cloud-build/lucifer-cloud-build-dependencies/pom.xml</relativePath>
+        <relativePath>../lucifer-cloud-build/pom.xml</relativePath>
         <groupId>com.lucifer.cloud</groupId>
         <artifactId>lucifer-cloud-build</artifactId>
         <version>1.0.1-SNAPSHOT</version>
