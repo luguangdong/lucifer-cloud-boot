@@ -44,16 +44,14 @@ pipeline {
         // 构建代码
         stage('mvn build code...') {
             steps {
-                sh '${mvn_home}/bin/mvn clean package -DskipTests'
+                sh '${mvn_home}/bin/mvn clean package deploy -DskipTests'
             }
         }
 
         // 制作自定义镜像并发布Harbor
         stage('make docker image send to harbor...') {
                     steps {
-                        sh '''cp ./target/*.jar ./docker/
-                        cp ./Dockerfile ./docker/
-                        cd ./docker
+                        sh '''cp ./ums-service/target/*.jar ./
                         docker build -t ${JOB_NAME}:${tag} ./'''
 
                         sh '''docker login -u ${harborUser} -p ${harborPasswd} ${harborHost}
