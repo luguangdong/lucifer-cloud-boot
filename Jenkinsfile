@@ -51,7 +51,7 @@ pipeline {
         // 制作自定义镜像并发布Harbor
         stage('make docker image send to harbor...') {
                     steps {
-                        sh '''cp ./ums-service/target/*.jar ./
+                        sh '''cp ./ums/ums-service/target/*.jar ./
                         docker build -t ${JOB_NAME}:${tag} ./'''
 
                         sh '''docker login -u ${harborUser} -p ${harborPasswd} ${harborHost}
