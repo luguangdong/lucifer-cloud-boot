@@ -19,7 +19,7 @@ pipeline {
           string name: 'tag', defaultValue: '1.1.1', description:'镜像标签', trim: true
           hidden name: 'harborHost', defaultValue: '192.168.137.199:80', description:'镜像私服地址'
           hidden name: 'harborRepo', defaultValue: 'lucifer_repository', description:'镜像仓库'
-          hidden name: 'publisher_remoteDirectory', defaultValue: '/data/deploy/lucifer-cloud/ums', description:'ssh远程文件夹'
+          hidden name: 'publisher_remoteDirectory', defaultValue: '/data/deploy/lucifer-cloud/ums/', description:'ssh远程文件夹'
           hidden name: 'publisher_sourceFiles', defaultValue: 'deploy.yaml', description:'ssh远程构建文件'
           hidden name: 'publisher_sourceFiles_env', defaultValue: 'deploy-env.yaml', description:'ssh远程临时环境变量文件'
        }
