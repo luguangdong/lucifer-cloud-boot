@@ -20,7 +20,7 @@ spec:
           image: $image
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
       imagePullSecrets:
         - name: harbor-login
 ---
@@ -38,7 +38,7 @@ spec:
     - protocol: TCP
       port: 8081
       targetPort: 8081
-      nodePort: 30091
+      nodePort: 30098
   type: LoadBalancer
 
 ---
@@ -61,5 +61,5 @@ spec:
               service:
                 name: lucifer-cloud-ums
                 port:
-                  number: 8080
+                  number: 8081
 
