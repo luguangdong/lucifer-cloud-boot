@@ -9,7 +9,7 @@ spring:
           # 认证提供者,自定义名称
           custom-issuer:
             # Token签发地址(认证服务地址)
-            issuer-uri: http://43.140.224.40:8080
+            issuer-uri: http://lucifer-cloud.com:8080
             # 获取用户信息的地址，默认的/userinfo端点需要IdToken获取，为避免麻烦自定一个用户信息接口
             user-info-uri: ${spring.security.oauth2.client.provider.custom-issuer.issuer-uri}/user
             user-name-attribute: sub
@@ -28,7 +28,7 @@ spring:
             # 获取Token使用的授权流程
             authorization-grant-type: authorization_code
             # 回调地址，这里设置为Spring Security Client默认实现使用code换取token的接口
-            redirect-uri: http://127.0.0.1:8000/login/oauth2/code/messaging-client-oidc
+            redirect-uri: http://lucifer-cloud.com:8000/login/oauth2/code/messaging-client-oidc
             scope:
               - message.read
               - message.write
