@@ -1,0 +1,18 @@
+spring:
+  application: ums
+  cloud:
+    nacos:
+      config:
+        server-addr: 43.140.224.40:8848
+        username: nacos
+        password: nacos
+        namespace: 2061fa23-4190-4029-ad25-0df790b4bc0a
+        extension-configs:
+          - dataId: ums-dev.yaml
+            group: dev
+            refresh: true
+        refresh-enabled: true
+  config:
+    activate:
+      on-profile:
+        - dev
