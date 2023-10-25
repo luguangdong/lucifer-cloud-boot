@@ -22,21 +22,6 @@ spec:
       imagePullSecrets:
         - name: harbor-login
 ---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  namespace: kube-lucifer
-#  name: ums-service
-#spec:
-#  selector:
-#    app: ums-pod
-#  ports:
-#    - protocol: TCP
-#      port: 8082
-#      targetPort: 8082
-#      nodePort: 30102
-#  type: LoadBalancer
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -46,36 +31,24 @@ spec:
   selector:
     app: ums-pod
   ports:
-    - port: 8082
+    - protocol: TCP
+      port: 8082
       targetPort: 8082
-  clusterIP: None
-  type: ClusterIP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  namespace: kube-lucifer
-  name: lucifer-ingress
-#  annotations:
-#    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: lucifer.cloud.com
-      http:
-        paths:
-          - path: /auth
-            pathType: Prefix
-            backend:
-              service:
-                name: auth-service
-                port:
-                  number: 8081
-          - path: /ums
-            pathType: Prefix
-            backend:
-              service:
-                name: ums-service
-                port:
-                  number: 8082
+      nodePort: 30102
+  type: LoadBalancer
+
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  namespace: kube-lucifer
+#  name: ums-service
+#spec:
+#  selector:
+#    app: ums-pod
+#  ports:
+#    - port: 8082
+#      targetPort: 8082
+#  clusterIP: None
+#  type: ClusterIP
+
 
