@@ -41,25 +41,25 @@ spec:
       nodePort: 30102
   type: LoadBalancer
 
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  namespace: kube-lucifer
-#  name: lucifer-cloud-ums
-#  annotations:
-#    nginx.ingress.kubernetes.io/rewrite-target: /
-#spec:
-#  ingressClassName: nginx
-#  rules:
-#    - host: com.lucifer.cloud.ums
-#      http:
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: lucifer-cloud-ums
-#                port:
-#                  number: 82
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: kube-lucifer
+  name: lucifer-cloud-ums
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: com.lucifer.cloud.ums
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lucifer-cloud-ums
+                port:
+                  number: 82
 
