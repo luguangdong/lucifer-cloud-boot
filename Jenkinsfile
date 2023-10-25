@@ -9,7 +9,7 @@ pipeline {
             mvn_home = "/data/maven/maven-3.9.4/"
             publisher_host = "192.168.137.133"
             publisher_hostName = "k8s-master-1"
-            deployment = "lucifer-cloud-ums"
+            deployment = "ums-deployment"
             namespace = "kube-lucifer" ;
      }
 

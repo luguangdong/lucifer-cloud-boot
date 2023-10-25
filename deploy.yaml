@@ -2,64 +2,80 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: kube-lucifer
-  name: lucifer-cloud-ums
-  labels:
-    app: lucifer-cloud-ums
+  name: ums-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: lucifer-cloud-ums
+      app: ums-pod
   template:
     metadata:
       labels:
-        app: lucifer-cloud-ums
+        app: ums-pod
     spec:
       containers:
-        - name: lucifer-cloud-ums
+        - name: ums
           image: $image
           imagePullPolicy: Always
           ports:
-            - containerPort: 82
+            - containerPort: 8082
       imagePullSecrets:
         - name: harbor-login
 ---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  namespace: kube-lucifer
+#  name: ums-service
+#spec:
+#  selector:
+#    app: ums-pod
+#  ports:
+#    - protocol: TCP
+#      port: 8082
+#      targetPort: 8082
+#      nodePort: 30102
+#  type: LoadBalancer
+
 apiVersion: v1
 kind: Service
 metadata:
   namespace: kube-lucifer
-  labels:
-    app: lucifer-cloud-ums
-  name: lucifer-cloud-ums
+  name: ums-service
 spec:
   selector:
-    app: lucifer-cloud-ums
+    app: ums-pod
   ports:
-    - protocol: TCP
-      port: 82
-      targetPort: 82
-      nodePort: 30102
-  type: LoadBalancer
-
+    - port: 8082
+      targetPort: 8082
+  clusterIP: None
+  type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: kube-lucifer
-  name: lucifer-cloud-ums
+  name: lucifer-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-    - host: com.lucifer.cloud.ums
+    - host: lucifer.cloud.com
       http:
         paths:
-          - path: /
+          - path: /auth
             pathType: Prefix
             backend:
               service:
-                name: lucifer-cloud-ums
+                name: auth-service
                 port:
-                  number: 82
+                  number: 8081
+          - path: /ums
+            pathType: Prefix
+            backend:
+              service:
+                name: ums-service
+                port:
+                  number: 8082
 
