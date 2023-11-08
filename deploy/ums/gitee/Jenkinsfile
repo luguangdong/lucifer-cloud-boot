@@ -2,19 +2,19 @@ pipeline {
     agent any
 
     environment{
-            gitUrl = "https://gitee.com/luguangdong/lucifer-cloud-authorization.git"
+            gitUrl = "https://gitee.com/luguangdong/lucifer-cloud-boot.git"
             gitCredentialsId = "695eef5c-1a0b-4338-b2d3-4ec08ea1f2b8"
-            publisher_hostName = "lucifer-cloud-tencent"
+            publisher_hostName = "lucifer-cloud-aliyun"
             mvn_home = "/data/maven/maven-3.9.5";
      }
 
     // hidden 标签jenkins需要安装 Hidden Parameter 插件
     parameters {
           choice choices: ['*/master', '*/dev'], description: '选择的branch', name: 'branch'
-          hidden name: 'publisher_remoteDirectory', defaultValue: '/data/deploy/lucifer-cloud/auth/', description:'ssh远程文件夹'
-          hidden name: 'publisher_sourceFiles', defaultValue: 'lucifer-cloud-authorization-1.0.1-SNAPSHOT.jar', description:'ssh远程构建文件'
+          hidden name: 'publisher_remoteDirectory', defaultValue: '/data/deploy/lucifer-cloud/ums/', description:'ssh远程文件夹'
+          hidden name: 'publisher_sourceFiles', defaultValue: 'ums-service-1.0.1-SNAPSHOT.jar', description:'ssh远程构建文件'
           hidden name: 'publisher_startFiles', defaultValue: 'start.sh', description:'ssh远程启动文件'
-          hidden name: 'appName', defaultValue: 'auth', description:'服务名称'
+          hidden name: 'appName', defaultValue: 'ums', description:'服务名称'
        }
 
 
@@ -45,7 +45,7 @@ pipeline {
          stage('transfer jar file to remoteDirectory...') {
              steps {
                 sh '''cp ./target/*.jar ./'''
-                sh '''cp ./deploy/gitee/start.sh ./'''
+                sh '''cp ./deploy/ums/gitee/start.sh ./'''
 
                 sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
                                      execCommand: '',
