@@ -14,7 +14,7 @@ pipeline {
           hidden name: 'publisher_remoteDirectory', defaultValue: '/data/deploy/lucifer-cloud/ums/', description:'ssh远程文件夹'
           hidden name: 'publisher_sourceFiles', defaultValue: 'ums-service-1.0.1-SNAPSHOT.jar', description:'ssh远程构建文件'
           hidden name: 'publisher_startFiles', defaultValue: 'start.sh', description:'ssh远程启动文件'
-          hidden name: 'appName', defaultValue: 'ums', description:'服务名称'
+          hidden name: 'appName', defaultValue: 'ums.jar', description:'服务名称'
        }
 
 
