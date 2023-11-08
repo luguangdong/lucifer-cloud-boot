@@ -44,7 +44,7 @@ pipeline {
          // 将jar文件传到服务器上
          stage('transfer jar file to remoteDirectory...') {
              steps {
-                sh '''cp ./target/*.jar ./'''
+                sh '''cp ./ums/ums-service/target/*.jar ./'''
                 sh '''cp ./deploy/ums/gitee/start.sh ./'''
 
                 sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
