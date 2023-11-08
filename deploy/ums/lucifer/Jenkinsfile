@@ -52,6 +52,7 @@ pipeline {
         stage('make docker image send to harbor...') {
                     steps {
                         sh '''cp ./ums/ums-service/target/*.jar ./
+                        cp ./deploy/lucifer/Dockerfile ./
                         docker build -t ${JOB_NAME}:${tag} ./'''
 
                         sh '''docker login -u ${harborUser} -p ${harborPasswd} ${harborHost}
