@@ -4,9 +4,9 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 43.140.224.40:8848
-        username: nacos
-        password: nacos
+        server-addr: lucifer-auth.online:8848
+        username: lucifer
+        password: lucifer
         namespace: ee025199-9281-4b2d-8107-4885d6cf1f67
         extension-configs:
           - dataId: ums-tencent.yaml
