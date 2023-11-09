@@ -4,7 +4,7 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: lucifer-auth.online:8848
+        server-addr: 43.140.224.40:8848
         username: tencent
         password: tencent
         namespace: ee025199-9281-4b2d-8107-4885d6cf1f67
