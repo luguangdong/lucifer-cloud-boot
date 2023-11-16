@@ -1,14 +1,13 @@
 package com.lucifer.cloud.boot.ums.config;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
@@ -47,21 +46,13 @@ public class SecurityConfig {
         http.oauth2Login(Customizer.withDefaults());
 
         // 设置当前服务为资源服务，解析请求头中的token
-//        http.oauth2ResourceServer((resourceServer) -> resourceServer
-//                        // 使用jwt
-//                        .jwt(jwt -> jwt
-//                                // 请求中携带token访问时会触发该解析器适配器
-//                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
-//                        )
-//                /*
-//                // xhr请求未携带Token处理
-//                .authenticationEntryPoint(this::authenticationEntryPoint)
-//                // 权限不足处理
-//                .accessDeniedHandler(this::accessDeniedHandler)
-//                // Token解析失败处理
-//                .authenticationFailureHandler(this::failureHandler)
-//                */
-//        );
+        http.oauth2ResourceServer((resourceServer) -> resourceServer
+                // 使用jwt
+                .jwt(jwt -> jwt
+                        // 请求中携带token访问时会触发该解析器适配器
+                        .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                ));
+
 
         return http.build();
     }
@@ -73,10 +64,8 @@ public class SecurityConfig {
         grantedAuthoritiesConverter.setAuthorityPrefix("");
         // 设置权限信息在jwt claims中的key
         grantedAuthoritiesConverter.setAuthoritiesClaimName("authorities");
-
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
         return jwtAuthenticationConverter;
     }
-
 }
