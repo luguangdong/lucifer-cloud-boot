@@ -3,10 +3,15 @@ package com.lucifer.cloud.boot.ums.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.CorsFilter;
 
 /**
@@ -20,17 +25,58 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfig {
     private final CorsFilter corsFilter;
 
+
+
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(HttpSecurity http) throws Exception {
-
-        // 添加跨域过滤器
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.addFilter(corsFilter);
-
-        // 禁用 csrf 与 cors
+        // 禁用csrf与cors
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(AbstractHttpConfigurer::disable);
 
-        // 设置不认证放行路径
-        return (web) -> web.ignoring().requestMatchers("/test01");
+        // 开启全局验证
+        http.authorizeHttpRequests((authorize) -> authorize
+                // 放行静态资源和不需要认证的url
+                .requestMatchers("/test02").permitAll()
+                .anyRequest().authenticated()
+        );
+
+
+
+        // 开启OAuth2登录
+        http.oauth2Login(Customizer.withDefaults());
+
+        // 设置当前服务为资源服务，解析请求头中的token
+//        http.oauth2ResourceServer((resourceServer) -> resourceServer
+//                        // 使用jwt
+//                        .jwt(jwt -> jwt
+//                                // 请求中携带token访问时会触发该解析器适配器
+//                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
+//                        )
+//                /*
+//                // xhr请求未携带Token处理
+//                .authenticationEntryPoint(this::authenticationEntryPoint)
+//                // 权限不足处理
+//                .accessDeniedHandler(this::accessDeniedHandler)
+//                // Token解析失败处理
+//                .authenticationFailureHandler(this::failureHandler)
+//                */
+//        );
+
+        return http.build();
     }
+
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        // 设置解析权限信息的前缀，设置为空是去掉前缀
+        grantedAuthoritiesConverter.setAuthorityPrefix("");
+        // 设置权限信息在jwt claims中的key
+        grantedAuthoritiesConverter.setAuthoritiesClaimName("authorities");
+
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+        return jwtAuthenticationConverter;
+    }
+
 }
