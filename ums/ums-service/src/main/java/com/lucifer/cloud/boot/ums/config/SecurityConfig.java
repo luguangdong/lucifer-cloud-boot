@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.web.filter.CorsFilter;
 
 /**
@@ -20,8 +21,16 @@ public class SecurityConfig {
     private final CorsFilter corsFilter;
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(HttpSecurity http) {
+    public WebSecurityCustomizer webSecurityCustomizer(HttpSecurity http) throws Exception {
+
+        // 添加跨域过滤器
         http.addFilter(corsFilter);
+
+        // 禁用 csrf 与 cors
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.cors(AbstractHttpConfigurer::disable);
+
+        // 设置不认证放行路径
         return (web) -> web.ignoring().requestMatchers("/app");
     }
 }
