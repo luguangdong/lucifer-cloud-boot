@@ -31,6 +31,6 @@ public class SecurityConfig {
         http.cors(AbstractHttpConfigurer::disable);
 
         // 设置不认证放行路径
-        return (web) -> web.ignoring().requestMatchers("/app");
+        return (web) -> web.ignoring().requestMatchers("/test01");
     }
 }
