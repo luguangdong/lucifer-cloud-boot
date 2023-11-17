@@ -28,7 +28,7 @@ public class BeanConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // 设置允许跨域的域名,如果允许携带cookie的话,路径就不能写*号, *表示所有的域名都可以跨域访问
-        configuration.addAllowedOrigin("http://lucifer-cloud.com");
+        configuration.addAllowedOrigin("https://lucifer-cloud.com");
         configuration.addAllowedOrigin("https://lucifer-cloud.com:5173");
         configuration.addAllowedOrigin("http://127.0.0.1");
         configuration.addAllowedOrigin("http://127.0.0.1:5173");
