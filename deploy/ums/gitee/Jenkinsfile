@@ -57,7 +57,8 @@ pipeline {
                 cd ${publisher_remoteDirectory}
                 mv ${publisher_sourceFiles} ${appName}
                 chmod 777  start.sh
-                ./start.sh
+                sh start.sh
+                ps -aux | grep -v grep | grep java
                 ''',
                 execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_sourceFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
              }
