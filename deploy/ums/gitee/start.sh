@@ -11,7 +11,7 @@ then
 	echo "关闭服务 $JARFILE 成功"
 fi
 source /etc/profile
-nohup JAVA_HOME/java  -Xms128m -Xmx128m -Xmn128m -jar $FILEPATH/$JARFILE  --spring.profiles.active=$ENV > log &
+nohup $JAVA_HOME/java  -Xms128m -Xmx128m -Xmn128m -jar $FILEPATH/$JARFILE  --spring.profiles.active=$ENV > log &
 pid=`ps -ef | grep $JARFILE | grep -v grep | awk '{print $2}'`
 echo "新服务进程pid=$pid"
 echo "启动服务 $JARFILE 成功"
