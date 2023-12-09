@@ -75,7 +75,8 @@ pipeline {
                  cd ${publisher_remoteDirectory}
                  mv ${publisher_sourceFiles} ${appName}
                  chmod 777  start.sh
-                 nohup sh start.sh
+                 sh start.sh
+                 ps -aux | grep -v grep | grep java
                  ''',
                  execTimeout: 120000,
                  flatten: false,
