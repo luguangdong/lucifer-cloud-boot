@@ -50,8 +50,10 @@ public class SecurityConfig {
                 // 使用jwt
                 .jwt(jwt -> jwt
                         // 请求中携带token访问时会触发该解析器适配器
-                        .jwtAuthenticationConverter(jwtAuthenticationConverter())
-                ));
+                        .jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                .accessDeniedHandler(SecurityUtils::exceptionHandler)
+                .authenticationEntryPoint(SecurityUtils::exceptionHandler)
+        );
 
 
         return http.build();
