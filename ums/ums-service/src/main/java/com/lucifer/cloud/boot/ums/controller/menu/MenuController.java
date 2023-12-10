@@ -17,11 +17,83 @@ public class MenuController {
 
     @GetMapping("/loadMenuList")
     public Map loadMenuList() {
-        return JsonUtils.jsonCovertToObject(str, Map.class);
+        return JsonUtils.jsonCovertToObject(menuListStr, Map.class);
     }
 
 
-    String str = "{\n" +
+    @GetMapping("/loadUserTable")
+    public Map loadUserTable() {
+        return JsonUtils.jsonCovertToObject(UserTableStr, Map.class);
+    }
+
+    String UserTableStr ="{\n" +
+            "\t\"code\": 200,\n" +
+            "\t\"data\":{\n" +
+            "\t\t\"pageNum\":1,\n" +
+            "\t\t\"pageSize\": 10,\n" +
+            "\t\t\"total\": 12,\n" +
+            "\t\t\"list\": [\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"lucifer\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"原神\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"luciferao\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"LOL\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"路西法\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"炉石\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"lucifer\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"原神\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"luciferao\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"LOL\"\n" +
+            "\t\t},\t\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"路西法\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"炉石\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"lucifer\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"原神\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"luciferao\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"LOL\"\n" +
+            "\t\t},\t\n" +
+            "\t\t{\n" +
+            "\t\t\t\"username\": \"路西法\",\n" +
+            "\t\t\t\"age\": \"22\",\n" +
+            "            \"phone\":\"15693323897\",\n" +
+            "\t\t\t\"hobby\": \"炉石\"\n" +
+            "\t\t}\n" +
+            "\t]\n" +
+            "\t},\n" +
+            "\t\"msg\": \"成功\"\n" +
+            "}\n";
+
+
+    String menuListStr = "{\n" +
             "\t\"code\": 200,\n" +
             "\t\"data\": [\n" +
             "\t\t{\n" +
