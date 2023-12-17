@@ -72,9 +72,9 @@ public class BlogController {
             "            \"tel\": 13183505856,\n" +
             "            \"qq\": 1761617270,\n" +
             "            \"wechat\": \"Yang\",\n" +
-            "            \"git_hub\": \"https://github.com/boyyang-love\",\n" +
-            "            \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
-            "            \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
+            "            \"git_hub\": \"https://github.com/lucifer-love\",\n" +
+            "            \"background_image\": \"124810450/images/赛博朋克风格奇幻少女%20集原美电脑4k壁纸.jpg\",\n" +
+            "            \"motto\": \"不疯魔，不成活\"\n" +
             "            \"role\": \"admin\"\n" +
             "        },\n" +
             "        \"user_detail\": {\n" +
@@ -113,7 +113,7 @@ public class BlogController {
             "            \"dashboard_user\": {\n" +
             "                \"id\": 1,\n" +
             "                \"uid\": 124810450,\n" +
-            "                \"username\": \"boyyang\",\n" +
+            "                \"username\": \"lucifer\",\n" +
             "                \"gender\": 1,\n" +
             "                \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                \"age\": 0,\n" +
@@ -122,8 +122,8 @@ public class BlogController {
             "                \"tel\": 13183505856,\n" +
             "                \"qq\": 1761617270,\n" +
             "                \"wechat\": \"Yang\",\n" +
-            "                \"git_hub\": \"https://github.com/boyyang-love\",\n" +
-            "                \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
+            "                \"git_hub\": \"https://github.com/lucifer-love\",\n" +
+            "                \"background_image\": \"124810450/images/赛博朋克风格奇幻少女%20集原美电脑4k壁纸.jpg\",\n" +
             "                \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
             "                \"role\": \"admin\"\n" +
             "            }\n" +
@@ -477,7 +477,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -513,7 +513,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -549,7 +549,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -585,7 +585,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -621,7 +621,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -657,7 +657,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -693,7 +693,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -729,7 +729,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -765,7 +765,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -801,7 +801,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -837,7 +837,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -873,7 +873,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -909,7 +909,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -945,7 +945,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -981,7 +981,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1017,7 +1017,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1053,7 +1053,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1089,7 +1089,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1125,7 +1125,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1161,7 +1161,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 0,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1249,7 +1249,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 1,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1258,7 +1258,7 @@ public class BlogController {
             "                    \"tel\": 13183505856,\n" +
             "                    \"qq\": 1761617270,\n" +
             "                    \"wechat\": \"Yang\",\n" +
-            "                    \"git_hub\": \"https://github.com/boyyang-love\",\n" +
+            "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
             "                    \"role\": \"admin\"\n" +
@@ -1279,7 +1279,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 1,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1288,7 +1288,7 @@ public class BlogController {
             "                    \"tel\": 13183505856,\n" +
             "                    \"qq\": 1761617270,\n" +
             "                    \"wechat\": \"Yang\",\n" +
-            "                    \"git_hub\": \"https://github.com/boyyang-love\",\n" +
+            "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
             "                    \"role\": \"admin\"\n" +
@@ -1309,7 +1309,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 1,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1318,7 +1318,7 @@ public class BlogController {
             "                    \"tel\": 13183505856,\n" +
             "                    \"qq\": 1761617270,\n" +
             "                    \"wechat\": \"Yang\",\n" +
-            "                    \"git_hub\": \"https://github.com/boyyang-love\",\n" +
+            "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
             "                    \"role\": \"admin\"\n" +
@@ -1339,7 +1339,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 1,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1348,7 +1348,7 @@ public class BlogController {
             "                    \"tel\": 13183505856,\n" +
             "                    \"qq\": 1761617270,\n" +
             "                    \"wechat\": \"Yang\",\n" +
-            "                    \"git_hub\": \"https://github.com/boyyang-love\",\n" +
+            "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
             "                    \"role\": \"admin\"\n" +
@@ -1369,7 +1369,7 @@ public class BlogController {
             "                \"user_info\": {\n" +
             "                    \"id\": 1,\n" +
             "                    \"uid\": 124810450,\n" +
-            "                    \"username\": \"boyyang\",\n" +
+            "                    \"username\": \"lucifer\",\n" +
             "                    \"gender\": 1,\n" +
             "                    \"avatar_url\": \"124810450/avatar/cropped-1700911105766.png\",\n" +
             "                    \"age\": 0,\n" +
@@ -1378,7 +1378,7 @@ public class BlogController {
             "                    \"tel\": 13183505856,\n" +
             "                    \"qq\": 1761617270,\n" +
             "                    \"wechat\": \"Yang\",\n" +
-            "                    \"git_hub\": \"https://github.com/boyyang-love\",\n" +
+            "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
             "                    \"role\": \"admin\"\n" +
