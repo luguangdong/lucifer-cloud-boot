@@ -69,9 +69,9 @@ public class BlogController {
             "            \"age\": 0,\n" +
             "            \"email\": \"\",\n" +
             "            \"address\": \"\",\n" +
-            "            \"tel\": 13183505856,\n" +
-            "            \"qq\": 1761617270,\n" +
-            "            \"wechat\": \"Yang\",\n" +
+            "            \"tel\": 15693323897,\n" +
+            "            \"qq\": 709228784,\n" +
+            "            \"wechat\": \"Lucifer\",\n" +
             "            \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "            \"background_image\": \"124810450/images/赛博朋克风格奇幻少女%20集原美电脑4k壁纸.jpg\",\n" +
             "            \"motto\": \"不疯魔，不成活\"\n" +
@@ -119,9 +119,9 @@ public class BlogController {
             "                \"age\": 0,\n" +
             "                \"email\": \"\",\n" +
             "                \"address\": \"\",\n" +
-            "                \"tel\": 13183505856,\n" +
-            "                \"qq\": 1761617270,\n" +
-            "                \"wechat\": \"Yang\",\n" +
+            "                \"tel\": 15693323897,\n" +
+            "                \"qq\": 709228784,\n" +
+            "                \"wechat\": \"Lucifer\",\n" +
             "                \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                \"background_image\": \"124810450/images/赛博朋克风格奇幻少女%20集原美电脑4k壁纸.jpg\",\n" +
             "                \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
@@ -483,7 +483,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -519,7 +519,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -555,7 +555,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -591,7 +591,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -627,7 +627,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -663,7 +663,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -699,7 +699,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -735,7 +735,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -771,7 +771,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -807,7 +807,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -843,7 +843,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -879,7 +879,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -915,7 +915,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -951,7 +951,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -987,7 +987,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -1023,7 +1023,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -1059,7 +1059,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -1095,7 +1095,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -1131,7 +1131,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -1167,7 +1167,7 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
+            "                    \"tel\": 15693323897,\n" +
             "                    \"qq\": 0,\n" +
             "                    \"wechat\": \"\",\n" +
             "                    \"git_hub\": \"\",\n" +
@@ -1255,9 +1255,9 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
-            "                    \"qq\": 1761617270,\n" +
-            "                    \"wechat\": \"Yang\",\n" +
+            "                    \"tel\": 15693323897,\n" +
+            "                    \"qq\": 709228784,\n" +
+            "                    \"wechat\": \"Lucifer\",\n" +
             "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
@@ -1271,7 +1271,7 @@ public class BlogController {
             "                \"updated\": 1696679818,\n" +
             "                \"title\": \"封装本地数据缓存\",\n" +
             "                \"sub_title\": \"封装本地数据缓存\",\n" +
-            "                \"content\": \"### 封装本地数据缓存\\n\\n```js\\n/**\\n * @author yang\\n * @description 本地缓存\\n * */\\n\\n\\n// 默认有效时间\\nlet DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7\\n\\nconst createStorage = (prefixKey = '', storage = localStorage) =\\u003e {\\n\\n    class Storage {\\n        private storage = storage\\n        private prefixKey?: string = prefixKey\\n\\n        /**\\n         * @description 处理存储数据的前缀\\n         * @param {key: string}\\n        */\\n        private getKey(key: string) {\\n            return `${this.prefixKey}${key}`.toUpperCase();\\n        }\\n\\n        /**\\n         * @description 获取值\\n         * @param {key: string, def: any}\\n         * */\\n        public get(key: string, def: any = null) {\\n            let data = storage.getItem(this.getKey(key))\\n            if (data) {\\n                try {\\n                    let { value, expire } = JSON.parse(data)\\n                    if (expire === null || expire \\u003e= Date.now()) {\\n                        return value\\n                    } else {\\n                        this.remove(key)\\n                    }\\n                } catch (error) {\\n                    return def\\n                }\\n            } else {\\n                return def\\n            }\\n        }\\n\\n        /**\\n         * @description 存储值\\n         * @param {key: string, value: any, expire: number | null}\\n         * */\\n        public set(key: string, value: any, expire: number | null = DEFAULT_CACHE_TIME) {\\n            let data = {\\n                value,\\n                expire: expire !== null ? new Date().getTime() + expire * 1000 : null\\n            }\\n            this.storage.setItem(this.getKey(key), JSON.stringify(data))\\n        }\\n\\n        setCookie(name: string, value: any, expire: number | null = DEFAULT_CACHE_TIME) {\\n            document.cookie = `${this.getKey(name)}=${value}; Max-Age=${expire}`;\\n        }\\n\\n        /**\\n         * 根据名字获取cookie值\\n         * @param name\\n         */\\n        getCookie(name: string): string {\\n            const cookieArr = document.cookie.split('; ');\\n            for (let i = 0, length = cookieArr.length; i \\u003c length; i++) {\\n                const kv = cookieArr[i].split('=');\\n                if (kv[0] === this.getKey(name)) {\\n                    return kv[1];\\n                }\\n            }\\n            return '';\\n        }\\n\\n        /**\\n         * 根据名字删除指定的cookie\\n         * @param {string} key\\n         */\\n        removeCookie(key: string) {\\n            this.setCookie(key, 1, -1);\\n        }\\n\\n        /**\\n         * 清空cookie，使所有cookie失效\\n         */\\n        clearCookie(): void {\\n            const keys = document.cookie.match(/[^ =;]+(?==)/g);\\n            if (keys) {\\n                for (let i = keys.length; i--;) {\\n                    document.cookie = keys[i] + '=0;expire=' + new Date(0).toUTCString();\\n                }\\n            }\\n        }\\n\\n        /**\\n         * @description 清除值\\n         * @param {key: string}\\n         * */\\n        public remove(key: string) {\\n            this.storage.removeItem(this.getKey(key))\\n        }\\n\\n\\n        /**\\n         * @description 清空storage\\n         * */\\n        public clear(): void {\\n            this.storage.clear()\\n        }\\n    }\\n\\n\\n    return new Storage\\n}\\n\\n\\nexport {\\n    createStorage\\n}\\n\\n```\",\n" +
+            "                \"content\": \"### 封装本地数据缓存\\n\\n```js\\n/**\\n * @author Lucifer\\n * @description 本地缓存\\n * */\\n\\n\\n// 默认有效时间\\nlet DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7\\n\\nconst createStorage = (prefixKey = '', storage = localStorage) =\\u003e {\\n\\n    class Storage {\\n        private storage = storage\\n        private prefixKey?: string = prefixKey\\n\\n        /**\\n         * @description 处理存储数据的前缀\\n         * @param {key: string}\\n        */\\n        private getKey(key: string) {\\n            return `${this.prefixKey}${key}`.toUpperCase();\\n        }\\n\\n        /**\\n         * @description 获取值\\n         * @param {key: string, def: any}\\n         * */\\n        public get(key: string, def: any = null) {\\n            let data = storage.getItem(this.getKey(key))\\n            if (data) {\\n                try {\\n                    let { value, expire } = JSON.parse(data)\\n                    if (expire === null || expire \\u003e= Date.now()) {\\n                        return value\\n                    } else {\\n                        this.remove(key)\\n                    }\\n                } catch (error) {\\n                    return def\\n                }\\n            } else {\\n                return def\\n            }\\n        }\\n\\n        /**\\n         * @description 存储值\\n         * @param {key: string, value: any, expire: number | null}\\n         * */\\n        public set(key: string, value: any, expire: number | null = DEFAULT_CACHE_TIME) {\\n            let data = {\\n                value,\\n                expire: expire !== null ? new Date().getTime() + expire * 1000 : null\\n            }\\n            this.storage.setItem(this.getKey(key), JSON.stringify(data))\\n        }\\n\\n        setCookie(name: string, value: any, expire: number | null = DEFAULT_CACHE_TIME) {\\n            document.cookie = `${this.getKey(name)}=${value}; Max-Age=${expire}`;\\n        }\\n\\n        /**\\n         * 根据名字获取cookie值\\n         * @param name\\n         */\\n        getCookie(name: string): string {\\n            const cookieArr = document.cookie.split('; ');\\n            for (let i = 0, length = cookieArr.length; i \\u003c length; i++) {\\n                const kv = cookieArr[i].split('=');\\n                if (kv[0] === this.getKey(name)) {\\n                    return kv[1];\\n                }\\n            }\\n            return '';\\n        }\\n\\n        /**\\n         * 根据名字删除指定的cookie\\n         * @param {string} key\\n         */\\n        removeCookie(key: string) {\\n            this.setCookie(key, 1, -1);\\n        }\\n\\n        /**\\n         * 清空cookie，使所有cookie失效\\n         */\\n        clearCookie(): void {\\n            const keys = document.cookie.match(/[^ =;]+(?==)/g);\\n            if (keys) {\\n                for (let i = keys.length; i--;) {\\n                    document.cookie = keys[i] + '=0;expire=' + new Date(0).toUTCString();\\n                }\\n            }\\n        }\\n\\n        /**\\n         * @description 清除值\\n         * @param {key: string}\\n         * */\\n        public remove(key: string) {\\n            this.storage.removeItem(this.getKey(key))\\n        }\\n\\n\\n        /**\\n         * @description 清空storage\\n         * */\\n        public clear(): void {\\n            this.storage.clear()\\n        }\\n    }\\n\\n\\n    return new Storage\\n}\\n\\n\\nexport {\\n    createStorage\\n}\\n\\n```\",\n" +
             "                \"cover\": \"124810450/blog/嘘 恶魔头饰 红色头饰 美女.png\",\n" +
             "                \"thumbs_up\": 0,\n" +
             "                \"collection\": 0,\n" +
@@ -1285,9 +1285,9 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
-            "                    \"qq\": 1761617270,\n" +
-            "                    \"wechat\": \"Yang\",\n" +
+            "                    \"tel\": 15693323897,\n" +
+            "                    \"qq\": 709228784,\n" +
+            "                    \"wechat\": \"Lucifer\",\n" +
             "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
@@ -1315,9 +1315,9 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
-            "                    \"qq\": 1761617270,\n" +
-            "                    \"wechat\": \"Yang\",\n" +
+            "                    \"tel\": 15693323897,\n" +
+            "                    \"qq\": 709228784,\n" +
+            "                    \"wechat\": \"Lucifer\",\n" +
             "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
@@ -1345,9 +1345,9 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
-            "                    \"qq\": 1761617270,\n" +
-            "                    \"wechat\": \"Yang\",\n" +
+            "                    \"tel\": 15693323897,\n" +
+            "                    \"qq\": 709228784,\n" +
+            "                    \"wechat\": \"Lucifer\",\n" +
             "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
@@ -1375,9 +1375,9 @@ public class BlogController {
             "                    \"age\": 0,\n" +
             "                    \"email\": \"\",\n" +
             "                    \"address\": \"\",\n" +
-            "                    \"tel\": 13183505856,\n" +
-            "                    \"qq\": 1761617270,\n" +
-            "                    \"wechat\": \"Yang\",\n" +
+            "                    \"tel\": 15693323897,\n" +
+            "                    \"qq\": 709228784,\n" +
+            "                    \"wechat\": \"Lucifer\",\n" +
             "                    \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "                    \"background_image\": \"124810450/images/女孩 古装女孩 美丽女孩 古典 美丽.jpg\",\n" +
             "                    \"motto\": \"第一行没有你，第二行没有你，第三行没有也罢\",\n" +
