@@ -74,7 +74,7 @@ public class BlogController {
             "            \"wechat\": \"Lucifer\",\n" +
             "            \"git_hub\": \"https://github.com/lucifer-love\",\n" +
             "            \"background_image\": \"124810450/images/赛博朋克风格奇幻少女%20集原美电脑4k壁纸.jpg\",\n" +
-            "            \"motto\": \"不疯魔，不成活\"\n" +
+            "            \"motto\": \"不疯魔，不成活\",\n" +
             "            \"role\": \"admin\"\n" +
             "        },\n" +
             "        \"user_detail\": {\n" +
