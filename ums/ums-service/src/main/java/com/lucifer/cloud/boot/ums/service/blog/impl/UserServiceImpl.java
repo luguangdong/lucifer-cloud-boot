@@ -21,8 +21,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long id = 123L;
         User user = getById(id);
         Info user_info = Converter.convertInfo(user);
-        UserInfoDto.builder().user_info(user_info).build();
-        return null;
+        UserInfoDto userInfoDto = UserInfoDto.builder().user_info(user_info).build();
+        return userInfoDto;
     }
 
 
