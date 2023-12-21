@@ -10,66 +10,55 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * @author lucifer
- * @date 2023/12/21 15:05
+ * @date 2023/12/21 16:11
  */
+
 @Data
 @JsonSerialize
-@TableName("article")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Article extends BaseBo implements Serializable {
+public class BaseBo {
+
     @Serial
     private static final long serialVersionUID = 1L;
 
     /**
-     * 文章标题
+     * 自增id
      */
-    private String title;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    private Long uid;
 
     /**
-     * 文章副标题
+     * 创建时间
      */
-    private String sub_title;
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime created_at;
 
     /**
-     * 文章内容
+     * 修改时间
      */
-    private String content;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updated_at;
+
 
     /**
-     * 背景图片
+     * 删除时间
      */
-    private String cover;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime deleted_at;
 
     /**
-     * 背景图片
+     * 创建时间
      */
-    private String images;
+    private Long created;
 
     /**
-     * 背景图片
+     * 修改时间
      */
-    private Integer user_id;
-
-    /**
-     * 文章标签
-     */
-    private String tag;
-
-    /**
-     * 点赞数
-     */
-    private Integer thumbs_up;
-
-    /**
-     * 评论数
-     */
-    private Integer comment;
-
-
-
+    private Long updated;
 }

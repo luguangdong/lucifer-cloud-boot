@@ -19,56 +19,90 @@ import java.time.LocalDateTime;
  */
 @Data
 @JsonSerialize
-@TableName("article")
+@TableName("user")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Article extends BaseBo implements Serializable {
+public class User extends BaseBo implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
 
     /**
      * 文章标题
      */
-    private String title;
+    private String username;
 
     /**
      * 文章副标题
      */
-    private String sub_title;
+    private String password;
 
     /**
      * 文章内容
      */
-    private String content;
+    private Integer gender;
 
     /**
      * 背景图片
      */
-    private String cover;
+    private Integer age;
 
     /**
      * 背景图片
      */
-    private String images;
+    private Long birthday;
 
     /**
      * 背景图片
      */
-    private Integer user_id;
+    private String address;
 
     /**
      * 文章标签
      */
-    private String tag;
+    private Long tel;
 
     /**
      * 点赞数
      */
-    private Integer thumbs_up;
+    private String email;
 
     /**
      * 评论数
      */
-    private Integer comment;
+    private Integer qq;
+
+    /**
+     * 评论数
+     */
+    private String wechat;
+
+
+    /**
+     * 评论数
+     */
+    private String git_hub;
+
+    /**
+     * 评论数
+     */
+    private String avatar_url;
+
+
+    /**
+     * 评论数
+     */
+    private String background_image;
+
+
+    /**
+     * 评论数
+     */
+    private String motto;
+
+    /**
+     * 评论数
+     */
+    private String role;
 
 
 
