@@ -37,20 +37,20 @@ public class Article implements Serializable {
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     /**
      * 修改时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updatedAt;
+    private LocalDateTime updated_at;
 
 
     /**
      * 删除时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime deletedAt;
+    private LocalDateTime deleted_at;
 
     /**
      * 创建时间
@@ -70,7 +70,7 @@ public class Article implements Serializable {
     /**
      * 文章副标题
      */
-    private String subTitle;
+    private String sub_title;
 
     /**
      * 文章内容
@@ -90,7 +90,7 @@ public class Article implements Serializable {
     /**
      * 背景图片
      */
-    private Integer userId;
+    private Integer user_id;
 
     /**
      * 文章标签
@@ -100,7 +100,7 @@ public class Article implements Serializable {
     /**
      * 点赞数
      */
-    private Integer thumbsUp;
+    private Integer thumbs_up;
 
     /**
      * 评论数
