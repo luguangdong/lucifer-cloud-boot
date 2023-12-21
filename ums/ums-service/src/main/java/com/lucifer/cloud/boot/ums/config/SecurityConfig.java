@@ -36,7 +36,7 @@ public class SecurityConfig {
         // 开启全局验证
         http.authorizeHttpRequests((authorize) -> authorize
                 // 放行静态资源和不需要认证的url
-                .requestMatchers("/app").permitAll()
+                .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated()
         );
 
