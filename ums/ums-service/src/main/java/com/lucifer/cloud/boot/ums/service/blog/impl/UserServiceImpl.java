@@ -2,6 +2,8 @@ package com.lucifer.cloud.boot.ums.service.blog.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Converter;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Info;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfoDto;
 import com.lucifer.cloud.boot.ums.mapper.blog.UserMapper;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
@@ -16,6 +18,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public UserInfoDto userInfo(Long _t) {
+        Long id = 123L;
+        User user = getById(id);
+        Info user_info = Converter.convertInfo(user);
+        UserInfoDto.builder().user_info(user_info).build();
         return null;
     }
+
+
 }

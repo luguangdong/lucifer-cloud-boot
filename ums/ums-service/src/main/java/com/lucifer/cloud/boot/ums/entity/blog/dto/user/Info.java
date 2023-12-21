@@ -13,7 +13,7 @@ public class Info {
     private Long id;
     private Long uid;
     private String username;
-    private String gender;
+    private Integer gender;
     private String avatar_url;
     private Integer age;
     private String email;

@@ -69,7 +69,7 @@ public class User extends BaseBo implements Serializable {
     /**
      * 评论数
      */
-    private Integer qq;
+    private Long qq;
 
     /**
      * 评论数
