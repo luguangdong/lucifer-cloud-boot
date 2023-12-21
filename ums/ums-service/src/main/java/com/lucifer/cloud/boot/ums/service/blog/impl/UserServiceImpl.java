@@ -7,7 +7,11 @@ import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Info;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfoDto;
 import com.lucifer.cloud.boot.ums.mapper.blog.UserMapper;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 /**
  * @author lucifer
@@ -17,7 +21,15 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
-    public UserInfoDto userInfo(Long _t) {
+    public UserInfoDto userInfo(RequestEntity request, Long _t) {
+        HttpHeaders headers = request.getHeaders();
+        String token = null;
+        if(Objects.nonNull(headers.get("Authorization"))){
+            String authorization = headers.get("Authorization").get(0);
+            String[] split = authorization.split("Bearer ");
+            token = split[1];
+        }
+
         Long id = 123L;
         User user = getById(id);
         Info user_info = Converter.convertInfo(user);

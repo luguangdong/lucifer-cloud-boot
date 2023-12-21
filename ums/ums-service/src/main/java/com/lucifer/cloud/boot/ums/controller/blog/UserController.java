@@ -6,6 +6,7 @@ import com.lucifer.cloud.boot.ums.service.blog.ArticleService;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
+import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("info")
-    public Result<UserInfoDto> userInfo(@RequestParam("_t") Long _t) {
-        return Result.success(userService.userInfo(_t));
+    public Result<UserInfoDto> userInfo(RequestEntity request,@RequestParam("_t") Long _t) {
+        return Result.success(userService.userInfo(request,_t));
     }
 }
