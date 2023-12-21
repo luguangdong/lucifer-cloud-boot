@@ -1,6 +1,6 @@
 package com.lucifer.cloud.boot.ums.controller.blog;
-import com.lucifer.cloud.boot.ums.entity.bo.Article;
-import com.lucifer.cloud.boot.ums.service.ArticleService;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Article;
+import com.lucifer.cloud.boot.ums.service.blog.ArticleService;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;

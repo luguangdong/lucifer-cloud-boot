@@ -1,9 +1,9 @@
-package com.lucifer.cloud.boot.ums.service.impl;
+package com.lucifer.cloud.boot.ums.service.blog.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lucifer.cloud.boot.ums.entity.bo.Article;
-import com.lucifer.cloud.boot.ums.mapper.ArticleMapper;
-import com.lucifer.cloud.boot.ums.service.ArticleService;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Article;
+import com.lucifer.cloud.boot.ums.mapper.blog.ArticleMapper;
+import com.lucifer.cloud.boot.ums.service.blog.ArticleService;
 import org.springframework.stereotype.Service;
 
 /**

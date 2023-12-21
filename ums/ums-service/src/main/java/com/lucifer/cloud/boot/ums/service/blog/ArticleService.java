@@ -1,7 +1,7 @@
-package com.lucifer.cloud.boot.ums.service;
+package com.lucifer.cloud.boot.ums.service.blog;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lucifer.cloud.boot.ums.entity.bo.Article;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Article;
 
 /**
  * @author lucifer

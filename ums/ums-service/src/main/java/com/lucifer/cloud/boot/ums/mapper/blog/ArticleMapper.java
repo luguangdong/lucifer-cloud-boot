@@ -1,7 +1,7 @@
-package com.lucifer.cloud.boot.ums.mapper;
+package com.lucifer.cloud.boot.ums.mapper.blog;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lucifer.cloud.boot.ums.entity.bo.Article;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Article;
 
 /**
  * @author lucifer

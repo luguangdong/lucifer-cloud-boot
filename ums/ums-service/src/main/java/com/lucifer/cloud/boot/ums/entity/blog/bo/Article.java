@@ -1,4 +1,4 @@
-package com.lucifer.cloud.boot.ums.entity.bo;
+package com.lucifer.cloud.boot.ums.entity.blog.bo;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
