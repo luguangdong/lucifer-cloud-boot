@@ -11,6 +11,9 @@ spring:
           - dataId: ums-dev.yaml
             group: dev
             refresh: true
+          - dataId: ums-dubbo-dev.yaml
+            group: dev
+            refresh: true
         refresh-enabled: true
   config:
     activate:

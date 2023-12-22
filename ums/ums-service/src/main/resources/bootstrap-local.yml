@@ -11,6 +11,9 @@ spring:
           - dataId: ums-local.yaml
             group: local
             refresh: true
+          - dataId: ums-dubbo-local.yaml
+            group: local
+            refresh: true
         refresh-enabled: true
   config:
     activate:
