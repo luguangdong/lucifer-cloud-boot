@@ -36,7 +36,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             token = split[1];
         }
 
-        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo();
+        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
 
         Long id = 123L;
         User user = getById(id);

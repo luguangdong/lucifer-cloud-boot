@@ -1,8 +1,5 @@
 package com.lucifer.cloud.boot.ums.controller.blog;
-
-import com.lucifer.cloud.boot.ums.entity.blog.bo.Article;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfoDto;
-import com.lucifer.cloud.boot.ums.service.blog.ArticleService;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
@@ -12,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 /**
  * @author lucifer
@@ -26,7 +22,9 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("info")
-    public Result<UserInfoDto> userInfo(RequestEntity request,@RequestParam("_t") Long _t) {
+    public Result<UserInfoDto> userInfo(
+            RequestEntity request,
+            @RequestParam(value = "_t",required = false) Long _t) {
         return Result.success(userService.userInfo(request,_t));
     }
 }
