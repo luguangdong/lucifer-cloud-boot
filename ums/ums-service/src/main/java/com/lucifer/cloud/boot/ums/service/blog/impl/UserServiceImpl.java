@@ -37,8 +37,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
-
-        Long id = 123L;
+        Integer id = loginUserInfo.getId();
         User user = getById(id);
         Info user_info = Converter.convertInfo(user);
         UserInfoDto userInfoDto = UserInfoDto.builder().user_info(user_info).build();
