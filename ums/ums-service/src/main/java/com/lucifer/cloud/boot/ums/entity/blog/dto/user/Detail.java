@@ -10,8 +10,24 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Detail {
+
+    /**
+     * 发布数
+     */
     private Integer publish;
+
+    /**
+     * 收藏数
+     */
     private Integer likes;
+
+    /**
+     * 粉丝数
+     */
     private Integer follows;
+
+    /**
+     * 获赞数
+     */
     private Integer thumbs_up;
 }
