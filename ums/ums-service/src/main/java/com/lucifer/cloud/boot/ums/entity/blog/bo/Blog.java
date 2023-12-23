@@ -64,12 +64,12 @@ public class Blog extends BaseBo implements Serializable {
     private String thumbs_up_list;
 
     /**
-     * 文章标签
+     * 收藏数
      */
     private Integer collection;
 
     /**
-     * 收藏数
+     * 评论数
      */
     private Integer comment;
 

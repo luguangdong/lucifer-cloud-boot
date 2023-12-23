@@ -36,6 +36,6 @@ public class Follow extends BaseBo implements Serializable {
     /**
      * true 关注 false 取消关注
      */
-    private Boolean likes_type;
+    private Boolean follow_type;
 
 }

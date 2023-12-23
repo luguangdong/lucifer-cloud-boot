@@ -1,20 +1,26 @@
 package com.lucifer.cloud.boot.ums.service.blog.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.auth.api.UserApi;
 import com.lucifer.cloud.auth.model.response.Oauth2UserinfoResult;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Follow;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Converter;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Detail;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Info;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfoDto;
+import com.lucifer.cloud.boot.ums.mapper.blog.BlogMapper;
+import com.lucifer.cloud.boot.ums.mapper.blog.FollowMapper;
 import com.lucifer.cloud.boot.ums.mapper.blog.UserMapper;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
+import com.lucifer.cloud.boot.ums.util.TokenUtils;
+import jakarta.annotation.Resource;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
+import java.util.List;
 
 /**
  * @author lucifer
@@ -23,24 +29,25 @@ import java.util.Objects;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
+    @Resource
+    private BlogMapper blogMapper;
+
+    @Resource
+    private FollowMapper followMapper;
     @DubboReference(version = "1.0.1")
     private UserApi userApi;
 
     @Override
     public UserInfoDto userInfo(RequestEntity request, Long _t) {
-        HttpHeaders headers = request.getHeaders();
-        String token = null;
-        if(Objects.nonNull(headers.get("Authorization"))){
-            String authorization = headers.get("Authorization").get(0);
-            String[] split = authorization.split("Bearer ");
-            token = split[1];
-        }
-
+        String token = TokenUtils.getToken(request);
         Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
-        Integer id = loginUserInfo.getId();
-        User user = getById(id);
+        Integer userId = loginUserInfo.getId();
+        User user = getById(userId);
         Info user_info = Converter.convertInfo(user);
-        UserInfoDto userInfoDto = UserInfoDto.builder().user_info(user_info).build();
+        List<Blog> blogList = blogMapper.selectList(Wrappers.lambdaQuery(Blog.class).eq(Blog::getUser_id, userId));
+        List<Follow> followList = followMapper.selectList(Wrappers.lambdaQuery(Follow.class).eq(Follow::getFollow_user_id, userId).eq(Follow::getFollow_type, true));
+        Detail user_detail = Converter.convertBlog2Detail(blogList, followList);
+        UserInfoDto userInfoDto = UserInfoDto.builder().user_info(user_info).user_detail(user_detail).build();
         return userInfoDto;
     }
 

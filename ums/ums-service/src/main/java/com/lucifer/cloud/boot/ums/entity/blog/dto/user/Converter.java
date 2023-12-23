@@ -2,11 +2,16 @@ package com.lucifer.cloud.boot.ums.entity.blog.dto.user;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONObject;
+import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Follow;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author lucifer
@@ -31,6 +36,22 @@ public class Converter {
         info.setMotto(user.getMotto());
         info.setRole(user.getRole());
         return info;
+    }
+
+
+    public static Detail convertBlog2Detail(List<Blog> blogList, List<Follow> followList){
+        Detail detail = new Detail();
+        int publish = blogList.size();
+        int likes = Optional.ofNullable(blogList).orElse(Lists.newArrayList())
+                .stream().mapToInt(Blog::getCollection).sum();
+        int thumbs_up = Optional.ofNullable(blogList).orElse(Lists.newArrayList())
+                .stream().mapToInt(Blog::getThumbs_up).sum();
+        int follows = followList.size();
+        detail.setPublish(publish);
+        detail.setLikes(likes);
+        detail.setFollows(follows);
+        detail.setThumbs_up(thumbs_up);
+        return detail;
     }
 
 
