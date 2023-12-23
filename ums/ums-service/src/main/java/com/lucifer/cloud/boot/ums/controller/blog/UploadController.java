@@ -1,5 +1,5 @@
 package com.lucifer.cloud.boot.ums.controller.blog;
-import com.lucifer.cloud.boot.ums.service.blog.BlogService;
+import com.lucifer.cloud.boot.ums.service.blog.UploadService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2023/12/21 15:31
  */
 @RestController
-@RequestMapping("blog")
-public class BlogController {
+@RequestMapping("upload")
+public class UploadController {
     @Resource
-    private BlogService blogService;
+    private UploadService uploadService;
 
 }
