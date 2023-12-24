@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 /**
  * @author lucifer
  * @date 2023/12/21 15:31
@@ -35,5 +34,13 @@ public class UserController {
     public Result<Boolean> userUpdate(
             @RequestBody UserReq userReq) {
         return Result.success(userService.userUpdate(userReq));
+    }
+
+
+    @GetMapping("update/password")
+    public Result<Boolean> passwordUpdate(
+            RequestEntity request,
+            @RequestParam(value = "password",required = true) String password) {
+        return Result.success(userService.passwordUpdate(request,password));
     }
 }

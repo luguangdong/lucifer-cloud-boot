@@ -66,5 +66,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .eq(User::getUid, userReq.getUid()));
     }
 
+    @Override
+    public Boolean passwordUpdate(RequestEntity request,String password) {
+        String token = TokenUtils.getToken(request);
+        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
+        Integer userId = loginUserInfo.getId();
+        User user = new User();
+        user.setId(userId.longValue());
+        user.setPassword(password);
+        return  updateById(user);
+    }
+
 
 }

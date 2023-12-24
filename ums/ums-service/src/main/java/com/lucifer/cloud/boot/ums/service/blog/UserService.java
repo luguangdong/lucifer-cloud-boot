@@ -16,4 +16,7 @@ public interface UserService extends IService<User> {
 
 
     Boolean userUpdate(UserReq userReq);
+
+
+    Boolean passwordUpdate(RequestEntity request,String password);
 }
