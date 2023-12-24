@@ -74,7 +74,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.17.1</version>
+        </dependency>
         <dependency>
             <groupId>com.lucifer.cloud</groupId>
             <artifactId>lucifer-cloud-authorization</artifactId>

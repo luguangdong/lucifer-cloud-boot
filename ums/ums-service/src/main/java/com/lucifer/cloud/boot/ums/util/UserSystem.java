@@ -1,6 +1,9 @@
 package com.lucifer.cloud.boot.ums.util;
 import com.lucifer.cloud.auth.api.UserApi;
 import com.lucifer.cloud.auth.model.response.Oauth2UserinfoResult;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
+import com.lucifer.cloud.boot.ums.mapper.blog.UserMapper;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Component;
@@ -16,6 +19,9 @@ public class UserSystem {
 
     @DubboReference(version = "1.0.1")
     private UserApi userApi;
+
+    @Resource
+    private UserMapper userMapper;
 
     public  String token(HttpServletRequest request){
         Enumeration<String> authorizations = request.getHeaders("Authorization");
@@ -34,6 +40,14 @@ public class UserSystem {
         Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
         Integer userId = loginUserInfo.getId();
         return userId.longValue();
+    }
+
+
+    public User user(HttpServletRequest request){
+        String token = token(request);
+        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
+        Integer userId = loginUserInfo.getId();
+        return userMapper.selectById(userId);
     }
 
 
