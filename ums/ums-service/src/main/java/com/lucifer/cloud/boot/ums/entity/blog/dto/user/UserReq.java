@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class UserReq {
 
-    private Long uid;
+    private String uid;
 
     private String username;
 

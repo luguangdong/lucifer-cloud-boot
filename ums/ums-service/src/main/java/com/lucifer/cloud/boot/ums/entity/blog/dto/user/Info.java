@@ -10,8 +10,8 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Info {
-    private Long id;
-    private Long uid;
+    private String id;
+    private String uid;
     private String username;
     private Integer gender;
     private String avatar_url;

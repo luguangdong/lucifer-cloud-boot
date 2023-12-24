@@ -21,8 +21,8 @@ public class Converter {
 
     public static Info convertInfo(User user){
         Info info = new Info();
-        info.setId(user.getId());
-        info.setUid(user.getUid());
+        info.setId(String.valueOf(user.getId()));
+        info.setUid(String.valueOf(user.getUid()));
         info.setUsername(user.getUsername());
         info.setGender(user.getGender());
         info.setAvatar_url(user.getAvatar_url());
