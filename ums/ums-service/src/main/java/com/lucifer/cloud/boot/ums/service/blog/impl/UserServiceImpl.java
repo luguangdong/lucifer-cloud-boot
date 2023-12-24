@@ -11,6 +11,7 @@ import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Converter;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Detail;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Info;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfoDto;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserReq;
 import com.lucifer.cloud.boot.ums.mapper.blog.BlogMapper;
 import com.lucifer.cloud.boot.ums.mapper.blog.FollowMapper;
 import com.lucifer.cloud.boot.ums.mapper.blog.UserMapper;
@@ -49,6 +50,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Detail user_detail = Converter.convertBlog2Detail(blogList, followList);
         UserInfoDto userInfoDto = UserInfoDto.builder().user_info(user_info).user_detail(user_detail).build();
         return userInfoDto;
+    }
+
+    @Override
+    public Boolean userUpdate(UserReq userReq) {
+        return update(Wrappers.lambdaUpdate(User.class)
+                .set(User::getUsername,userReq.getUsername())
+                .set(User::getAvatar_url,userReq.getAvatar_url())
+                .set(User::getTel,userReq.getTel())
+                .set(User::getMotto,userReq.getMotto())
+                .set(User::getWechat,userReq.getWechat())
+                .set(User::getQq,userReq.getQq())
+                .set(User::getGit_hub,userReq.getGit_hub())
+                .set(User::getGender,userReq.getGender())
+                .eq(User::getUid, userReq.getUid()));
     }
 
 
