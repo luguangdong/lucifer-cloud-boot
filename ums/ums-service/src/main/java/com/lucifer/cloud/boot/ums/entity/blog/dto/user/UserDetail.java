@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Detail {
+public class UserDetail {
 
     /**
      * 发布数

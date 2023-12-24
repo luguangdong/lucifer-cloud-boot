@@ -4,7 +4,7 @@ package com.lucifer.cloud.boot.ums.msg.blog.consumer;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
-import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Converter;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserConverter;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class UserConsumer {
         String value = (String) consumerRecord.value();
         JSONObject jsonUser = JSONUtil.parseObj(value);
         log.info("人员注册--博客人员系统接收消息成功。name={}",name);
-        User user = Converter.convertJson2User(jsonUser);
+        User user = UserConverter.convertJson2User(jsonUser);
         userService.save(user);
         log.info("人员注册--博客人员入库成功。name={}",name);
         ack.acknowledge();

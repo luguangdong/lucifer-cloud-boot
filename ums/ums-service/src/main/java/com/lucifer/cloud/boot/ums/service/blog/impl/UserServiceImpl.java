@@ -7,9 +7,9 @@ import com.lucifer.cloud.auth.model.response.Oauth2UserinfoResult;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.Follow;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
-import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Converter;
-import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Detail;
-import com.lucifer.cloud.boot.ums.entity.blog.dto.user.Info;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserConverter;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserDetail;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfo;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfoDto;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserReq;
 import com.lucifer.cloud.boot.ums.mapper.blog.BlogMapper;
@@ -44,10 +44,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
         Integer userId = loginUserInfo.getId();
         User user = getById(userId);
-        Info user_info = Converter.convertInfo(user);
+        UserInfo user_info = UserConverter.convertInfo(user);
         List<Blog> blogList = blogMapper.selectList(Wrappers.lambdaQuery(Blog.class).eq(Blog::getUser_id, userId));
         List<Follow> followList = followMapper.selectList(Wrappers.lambdaQuery(Follow.class).eq(Follow::getFollow_user_id, userId).eq(Follow::getFollow_type, true));
-        Detail user_detail = Converter.convertBlog2Detail(blogList, followList);
+        UserDetail user_detail = UserConverter.convertBlog2Detail(blogList, followList);
         UserInfoDto userInfoDto = UserInfoDto.builder().user_info(user_info).user_detail(user_detail).build();
         return userInfoDto;
     }

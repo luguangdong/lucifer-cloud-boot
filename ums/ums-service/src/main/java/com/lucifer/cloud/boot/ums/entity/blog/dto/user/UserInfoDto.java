@@ -13,7 +13,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserInfoDto {
 
-    private Info user_info;
+    private UserInfo user_info;
 
-    private Detail user_detail;
+    private UserDetail user_detail;
 }

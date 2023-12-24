@@ -17,10 +17,10 @@ import java.util.Optional;
  * @author lucifer
  * @date 2023/12/21 16:53
  */
-public class Converter {
+public class UserConverter {
 
-    public static Info convertInfo(User user){
-        Info info = new Info();
+    public static UserInfo convertInfo(User user){
+        UserInfo info = new UserInfo();
         info.setId(String.valueOf(user.getId()));
         info.setUid(String.valueOf(user.getUid()));
         info.setUsername(user.getUsername());
@@ -39,8 +39,8 @@ public class Converter {
     }
 
 
-    public static Detail convertBlog2Detail(List<Blog> blogList, List<Follow> followList){
-        Detail detail = new Detail();
+    public static UserDetail convertBlog2Detail(List<Blog> blogList, List<Follow> followList){
+        UserDetail detail = new UserDetail();
         int publish = blogList.size();
         int likes = Optional.ofNullable(blogList).orElse(Lists.newArrayList())
                 .stream().mapToInt(Blog::getCollection).sum();

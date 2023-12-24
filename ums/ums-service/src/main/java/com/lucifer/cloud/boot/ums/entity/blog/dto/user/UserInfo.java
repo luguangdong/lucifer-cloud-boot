@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Info {
+public class UserInfo {
     private String id;
     private String uid;
     private String username;

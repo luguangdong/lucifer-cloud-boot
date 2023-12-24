@@ -1,0 +1,29 @@
+package com.lucifer.cloud.boot.ums.entity.blog.dto.blog;
+import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfo;
+import org.springframework.beans.BeanUtils;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+
+/**
+ * @author lucifer
+ * @date 2023/12/24 13:59
+ */
+public class BlogConverter {
+
+    public static List<BlogInfo> convertList2InfoList(List<Blog> blogList, UserInfo user_info){
+        List<BlogInfo> blogInfoList = Optional.ofNullable(blogList).orElse(Lists.newArrayList())
+                .stream()
+                .map(blog -> {
+                    BlogInfo info = new BlogInfo();
+                    BeanUtils.copyProperties(blog,info);
+                    info.setUser_info(user_info);
+                    return info;
+                }).collect(Collectors.toList());
+        return blogInfoList;
+    }
+}
