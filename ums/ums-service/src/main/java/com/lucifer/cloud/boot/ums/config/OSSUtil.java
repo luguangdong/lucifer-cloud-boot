@@ -2,6 +2,7 @@ package com.lucifer.cloud.boot.ums.config;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.model.CannedAccessControlList;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
 import lombok.extern.slf4j.Slf4j;
@@ -74,6 +75,7 @@ public class OSSUtil {
             OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
             // 创建上传Object的Metadata
             ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setObjectAcl(CannedAccessControlList.PublicRead);
             objectMetadata.setContentLength(instream.available());
             objectMetadata.setCacheControl("no-cache");
             objectMetadata.setHeader("Pragma", "no-cache");
@@ -108,7 +110,7 @@ public class OSSUtil {
         }
         if (filenameExtension.equalsIgnoreCase("jpeg") || filenameExtension.equalsIgnoreCase("jpg")
                 || filenameExtension.equalsIgnoreCase("png")) {
-            return "image/jpeg";
+            return "image/jpg";
         }
         if (filenameExtension.equalsIgnoreCase("html")) {
             return "text/html";
@@ -128,7 +130,7 @@ public class OSSUtil {
         if (filenameExtension.equalsIgnoreCase("xml")) {
             return "text/xml";
         }
-        return "image/jpeg";
+        return "image/jpg";
     }
 
     /**
