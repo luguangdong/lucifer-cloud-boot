@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -81,7 +80,7 @@ public class OSSUtil {
             objectMetadata.setContentType(getcontentType(fileName.substring(fileName.lastIndexOf("."))));
             objectMetadata.setContentDisposition("inline;filename=" + fileName);
             // 上传文件
-            PutObjectResult putResult = ossClient.putObject(bucket, dir + fileName, instream, objectMetadata);
+            PutObjectResult putResult = ossClient.putObject(bucket, dir + "/" +fileName, instream, objectMetadata);
             ret = putResult.getETag();
         } catch (IOException e) {
             log.error("文件上传失败{}",e);

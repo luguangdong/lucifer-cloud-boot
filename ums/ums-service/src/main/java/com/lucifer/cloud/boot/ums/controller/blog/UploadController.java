@@ -6,7 +6,6 @@ import com.lucifer.cloud.boot.ums.util.UserSystem;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,26 +32,19 @@ public class UploadController {
     @Resource
     private UserSystem userSystem;
 
-    @GetMapping("upload")
+    @PostMapping("upload")
     public Result<Map> upload(
             String file_name,
-            String path) {
+            String path,
+            MultipartFile file
+    ) {
         String fileName = path + "/"+file_name;
+        ossUtil.uploadImg2Oss(file, fileName);
         String url = "https://lucifer-cloud.oss-cn-beijing.aliyuncs.com/blog/"+fileName;
         Map<String, Object> map = Maps.newHashMap();
         map.put("url",url);
-        map.put("key",file_name);
+        map.put("key",fileName);
         map.put("file_id",url);
         return Result.success(map);
     }
-
-
-    @PostMapping("upload")
-    public void upload(
-            String key,
-            MultipartFile file) {
-         ossUtil.uploadImg2Oss(file, key);
-    }
-
-
 }
