@@ -2,6 +2,7 @@ package com.lucifer.cloud.boot.ums.entity.blog.dto.blog;
 import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfo;
+import com.lucifer.cloud.boot.ums.util.GenerateUtils;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -25,5 +26,13 @@ public class BlogConverter {
                     return info;
                 }).collect(Collectors.toList());
         return blogInfoList;
+    }
+
+
+    public static Blog convertReq2blog(BlogReq blogReq, Long userId){
+        Blog blog = new Blog();
+        blog = (Blog)GenerateUtils.generateFiledValue(blog);
+        BeanUtils.copyProperties(blogReq,blog);
+        return blog;
     }
 }

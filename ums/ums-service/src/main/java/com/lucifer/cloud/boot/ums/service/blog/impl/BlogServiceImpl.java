@@ -50,7 +50,8 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     @Override
     public Boolean blogCreate(HttpServletRequest request,BlogReq blogReq) {
         Long userId = userSystem.userId(request);
-        return null;
+        Blog blog = BlogConverter.convertReq2blog(blogReq,userId);
+        return save(blog);
     }
 
 }
