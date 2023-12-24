@@ -4,13 +4,15 @@ import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserReq;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
-import org.springframework.http.RequestEntity;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * @author lucifer
@@ -21,11 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Resource
+    private HttpServletRequest request;
+
+    @Resource
     private UserService userService;
 
     @GetMapping("info")
     public Result<UserInfoDto> userInfo(
-            RequestEntity request,
             @RequestParam(value = "_t",required = false) Long _t) {
         return Result.success(userService.userInfo(request,_t));
     }
@@ -37,10 +41,10 @@ public class UserController {
     }
 
 
-    @GetMapping("update/password")
+    @PostMapping("update/password")
     public Result<Boolean> passwordUpdate(
-            RequestEntity request,
-            @RequestParam(value = "password",required = true) String password) {
+            @RequestBody Map map) {
+        String password = (String)map.get("password");
         return Result.success(userService.passwordUpdate(request,password));
     }
 }

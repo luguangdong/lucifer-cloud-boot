@@ -3,7 +3,8 @@ package com.lucifer.cloud.boot.ums.service.blog;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.blog.BlogInfoDto;
-import org.springframework.http.RequestEntity;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.blog.BlogReq;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author lucifer
@@ -12,7 +13,9 @@ import org.springframework.http.RequestEntity;
 public interface BlogService extends IService<Blog> {
 
 
-    BlogInfoDto blogInfo(RequestEntity request, Long _t,Integer page,Integer limit);
+    BlogInfoDto blogInfo(HttpServletRequest request, Long _t, Integer page, Integer limit);
 
+
+    Boolean blogCreate(HttpServletRequest request,BlogReq blogReq);
 
 }

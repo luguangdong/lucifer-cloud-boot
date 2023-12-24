@@ -2,8 +2,6 @@ package com.lucifer.cloud.boot.ums.service.blog.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lucifer.cloud.auth.api.UserApi;
-import com.lucifer.cloud.auth.model.response.Oauth2UserinfoResult;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.Follow;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
@@ -16,10 +14,9 @@ import com.lucifer.cloud.boot.ums.mapper.blog.BlogMapper;
 import com.lucifer.cloud.boot.ums.mapper.blog.FollowMapper;
 import com.lucifer.cloud.boot.ums.mapper.blog.UserMapper;
 import com.lucifer.cloud.boot.ums.service.blog.UserService;
-import com.lucifer.cloud.boot.ums.util.TokenUtils;
+import com.lucifer.cloud.boot.ums.util.UserSystem;
 import jakarta.annotation.Resource;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.http.RequestEntity;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -35,14 +32,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Resource
     private FollowMapper followMapper;
-    @DubboReference(version = "1.0.1")
-    private UserApi userApi;
+    @Resource
+    private UserSystem userSystem;
 
     @Override
-    public UserInfoDto userInfo(RequestEntity request, Long _t) {
-        String token = TokenUtils.getToken(request);
-        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
-        Integer userId = loginUserInfo.getId();
+    public UserInfoDto userInfo(HttpServletRequest request, Long _t) {
+        Long userId = userSystem.userId(request);
         User user = getById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
         List<Blog> blogList = blogMapper.selectList(Wrappers.lambdaQuery(Blog.class).eq(Blog::getUser_id, userId));
@@ -67,10 +62,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Boolean passwordUpdate(RequestEntity request,String password) {
-        String token = TokenUtils.getToken(request);
-        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
-        Integer userId = loginUserInfo.getId();
+    public Boolean passwordUpdate(HttpServletRequest request,String password) {
+        Long userId = userSystem.userId(request);
         User user = new User();
         user.setId(userId.longValue());
         user.setPassword(password);
