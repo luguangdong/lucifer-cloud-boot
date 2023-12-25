@@ -1,8 +1,8 @@
 #!/bin/bash
 source /etc/profile
 export JAVA_HOME=/data/java/jdk-17.0.8/bin
-FILEPATH=/data/deploy/lucifer-cloud/ums
-JARFILE=ums.jar
+FILEPATH=/data/deploy/lucifer-cloud/blog
+JARFILE=blog.jar
 ENV=tencent
 pid=`ps -ef | grep $JARFILE | grep -v grep | awk '{print $2}'`
 echo "旧服务进程pid=$pid"
