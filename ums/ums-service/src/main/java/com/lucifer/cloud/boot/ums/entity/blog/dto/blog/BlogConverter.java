@@ -41,6 +41,7 @@ public class BlogConverter {
         Blog blog = new Blog();
         blog = (Blog)GenerateUtils.generateFiledValue(blog);
         blog.setUser_id(userId);
+        blog.setTag(blogReq.getTags());
         BeanUtils.copyProperties(blogReq,blog);
         return blog;
     }

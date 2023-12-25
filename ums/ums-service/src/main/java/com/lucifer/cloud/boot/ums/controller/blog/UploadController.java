@@ -1,12 +1,13 @@
 package com.lucifer.cloud.boot.ums.controller.blog;
-import com.alibaba.nacos.shaded.com.google.common.collect.Maps;
-import com.lucifer.cloud.boot.ums.config.OSSUtil;
+import com.lucifer.cloud.boot.ums.service.blog.UploadService;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Map;
 
 
@@ -17,8 +18,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("cos")
 public class UploadController {
+
     @Resource
-    OSSUtil ossUtil;
+    private HttpServletRequest request;
+
+    @Resource
+    private UploadService uploadService;
 
     @PostMapping("upload")
     public Result<Map> upload(
@@ -26,12 +31,6 @@ public class UploadController {
             String path,
             MultipartFile file
     ) {
-        String fileName = path +"/"+file_name;
-        String url = ossUtil.putImgObject(file, fileName);
-        Map<String, Object> map = Maps.newHashMap();
-        map.put("url",url);
-        map.put("key",fileName);
-        map.put("file_id",fileName);
-        return Result.success(map);
+        return Result.success(uploadService.upload(request,path,file_name,file));
     }
 }
