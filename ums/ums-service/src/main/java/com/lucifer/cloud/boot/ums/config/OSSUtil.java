@@ -1,11 +1,13 @@
 package com.lucifer.cloud.boot.ums.config;
 
+import com.alibaba.nacos.shaded.com.google.common.collect.Maps;
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.CannedAccessControlList;
 import com.aliyun.oss.model.ObjectMetadata;
+import com.aliyun.oss.model.PutObjectResult;
 import com.aliyun.oss.model.VoidResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author lucifer
@@ -110,9 +113,10 @@ public class OSSUtil {
     /**
      * 上传图片
      */
-    public String putImgObject(MultipartFile file, String fileName){
+    public  Map<String, String> putImgObject(String path,String file_name,MultipartFile file){
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
         try {
+            String fileName = path +"/"+file_name;
             InputStream inputStream = file.getInputStream();
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setObjectAcl(CannedAccessControlList.PublicRead);
@@ -121,18 +125,23 @@ public class OSSUtil {
             objectMetadata.setHeader("Pragma", "no-cache");
             objectMetadata.setContentType(getContentType(fileName.substring(fileName.lastIndexOf("."))));
             objectMetadata.setContentDisposition("inline;filename=" + fileName);
-            ossClient.putObject(bucket, dir + "/" +fileName, inputStream, objectMetadata);
+            PutObjectResult result = ossClient.putObject(bucket, dir + "/" + fileName, inputStream, objectMetadata);
+            String tag = result.getETag();
             String url = "https://" + bucket + "." + endpoint + "/" + dir + "/" + fileName;
-            return url;
+            Map<String, String> map = Maps.newHashMap();
+            map.put("tag",tag);
+            map.put("url",url);
+            map.put("fileName",fileName);
+            return map;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (OSSException oe) {
             log.error("服务端OSS上传图片文件={}失败。Host ID={},Request ID={},Error Code={},Error Message={}",
-                    fileName,oe.getHostId(),oe.getRequestId(),oe.getErrorCode(),oe.getMessage()
+                    file_name,oe.getHostId(),oe.getRequestId(),oe.getErrorCode(),oe.getMessage()
             );
         } catch (ClientException ce) {
             log.error("客户端Client删除图片文件={}失败。Error Message={}",
-                    fileName,ce.getMessage()
+                    file_name,ce.getMessage()
             );
         }  finally {
             if (ossClient != null) {
