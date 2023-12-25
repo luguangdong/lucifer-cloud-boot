@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  * @author lucifer
  */
 @Configuration
-@MapperScan("com.lucifer.cloud.boot.ums.mapper.blog")
+@MapperScan("com.lucifer.cloud.boot.blog.mapper")
 public class MybatisPlusConfig {
 
     /**
