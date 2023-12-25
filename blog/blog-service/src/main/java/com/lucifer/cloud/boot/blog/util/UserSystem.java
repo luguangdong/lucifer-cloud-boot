@@ -1,11 +1,12 @@
 package com.lucifer.cloud.boot.blog.util;
-import com.lucifer.cloud.auth.api.UserApi;
-import com.lucifer.cloud.auth.model.response.Oauth2UserinfoResult;
+import cn.hutool.json.JSONObject;
+import cn.hutool.jwt.JWT;
+import cn.hutool.jwt.JWTUtil;
+import com.lucifer.cloud.auth.constant.SecurityConstants;
 import com.lucifer.cloud.boot.blog.domin.bo.User;
 import com.lucifer.cloud.boot.blog.mapper.UserMapper;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Component;
 
 import java.util.Enumeration;
@@ -16,9 +17,6 @@ import java.util.Enumeration;
  */
 @Component
 public class UserSystem {
-
-    @DubboReference(version = "1.0.1")
-    private UserApi userApi;
 
     @Resource
     private UserMapper userMapper;
@@ -37,19 +35,16 @@ public class UserSystem {
 
     public Long userId(HttpServletRequest request){
         String token = token(request);
-        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
-        Integer userId = loginUserInfo.getId();
-        return userId.longValue();
+        JWT jwt = JWTUtil.parseToken(token);
+        JSONObject claimsJson = jwt.getPayload().getClaimsJson();
+        String uniqueId = (String) claimsJson.get(SecurityConstants.TOKEN_UNIQUE_ID);
+        return Long.parseLong(uniqueId);
     }
 
 
     public User user(HttpServletRequest request){
-        String token = token(request);
-        Oauth2UserinfoResult loginUserInfo = userApi.getLoginUserInfo(token);
-        Integer userId = loginUserInfo.getId();
-        return userMapper.selectById(userId);
+        return userMapper.selectById(userId(request));
     }
-
 
 
 }
