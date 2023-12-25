@@ -27,7 +27,7 @@ public class Tag extends BaseBo implements Serializable {
     private String name;
 
     /**
-     * 标签类型
+     * 标签类型  image blog article
      */
     private String type;
 

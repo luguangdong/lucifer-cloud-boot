@@ -9,6 +9,8 @@ import lombok.Data;
 @Data
 public class BlogReq {
 
+    private String uid;
+
     private String title;
 
     private String sub_title;
@@ -17,5 +19,5 @@ public class BlogReq {
 
     private String cover;
 
-    private String tag;
+    private String tags;
 }

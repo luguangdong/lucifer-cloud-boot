@@ -44,4 +44,11 @@ public class BlogController {
     ) {
         return Result.success(blogService.blogCreate(request,blogReq));
     }
+
+    @PostMapping("update")
+    public Result<Boolean> blogUpdate(
+            @RequestBody BlogReq blogReq
+    ) {
+        return Result.success(blogService.blogUpdate(request,blogReq));
+    }
 }

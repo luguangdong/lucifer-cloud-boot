@@ -12,8 +12,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BlogInfo {
     private String uid;
-    private Long created;
-    private Long updated;
+    private String created;
+    private String updated;
 
     private String title;
 
@@ -37,7 +37,7 @@ public class BlogInfo {
     /**
      * 博客作者
      */
-    private Long user_id;
+    private String user_id;
 
     /**
      * 博客标签

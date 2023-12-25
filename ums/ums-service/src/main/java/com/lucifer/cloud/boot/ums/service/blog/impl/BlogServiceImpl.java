@@ -2,16 +2,18 @@ package com.lucifer.cloud.boot.ums.service.blog.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lucifer.cloud.auth.model.response.Oauth2UserinfoResult;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.Blog;
+import com.lucifer.cloud.boot.ums.entity.blog.bo.Tag;
 import com.lucifer.cloud.boot.ums.entity.blog.bo.User;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.blog.BlogConverter;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.blog.BlogInfo;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.blog.BlogInfoDto;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.blog.BlogReq;
+import com.lucifer.cloud.boot.ums.entity.blog.dto.tag.TagConverter;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserConverter;
 import com.lucifer.cloud.boot.ums.entity.blog.dto.user.UserInfo;
 import com.lucifer.cloud.boot.ums.mapper.blog.BlogMapper;
+import com.lucifer.cloud.boot.ums.mapper.blog.TagMapper;
 import com.lucifer.cloud.boot.ums.mapper.blog.UserMapper;
 import com.lucifer.cloud.boot.ums.service.blog.BlogService;
 import com.lucifer.cloud.boot.ums.util.UserSystem;
@@ -35,6 +37,10 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     @Resource
     private UserMapper userMapper;
 
+
+    @Resource
+    private TagMapper tagMapper;
+
     @Override
     public BlogInfoDto blogInfo(HttpServletRequest request, Long _t, Integer page, Integer limit) {
         Long userId = userSystem.userId(request);
@@ -51,7 +57,20 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     public Boolean blogCreate(HttpServletRequest request,BlogReq blogReq) {
         Long userId = userSystem.userId(request);
         Blog blog = BlogConverter.convertReq2blog(blogReq,userId);
+        Tag tag = TagConverter.convertBlogReq2Tag(blogReq,userId);
+        tagMapper.insert(tag);
         return save(blog);
+    }
+
+    @Override
+    public Boolean blogUpdate(HttpServletRequest request, BlogReq blogReq) {
+        Blog blog = BlogConverter.convertReq2Eeditblog(blogReq);
+        return update(Wrappers.lambdaUpdate(Blog.class)
+                .set(Blog::getTitle,blog.getTitle())
+                .set(Blog::getSub_title,blog.getSub_title())
+                .set(Blog::getContent,blog.getContent())
+                .eq(Blog::getUid, blog.getUid())
+        );
     }
 
 }

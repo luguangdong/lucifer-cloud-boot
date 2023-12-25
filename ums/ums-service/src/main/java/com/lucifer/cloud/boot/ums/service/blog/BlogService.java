@@ -18,4 +18,6 @@ public interface BlogService extends IService<Blog> {
 
     Boolean blogCreate(HttpServletRequest request,BlogReq blogReq);
 
+    Boolean blogUpdate(HttpServletRequest request,BlogReq blogReq);
+
 }

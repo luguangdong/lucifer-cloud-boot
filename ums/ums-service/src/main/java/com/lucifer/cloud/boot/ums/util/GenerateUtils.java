@@ -3,7 +3,6 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ReflectUtil;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 /**
  * @author lucifer
@@ -14,11 +13,11 @@ public class GenerateUtils {
         long id = IdUtil.getSnowflakeNextId();
         long uid = IdUtil.getSnowflakeNextId();
         LocalDateTime now = LocalDateTime.now();
-        long milliSecond = now.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        long currentTimeMillis = System.currentTimeMillis();
         LocalDateTime created_at = now;
-        LocalDateTime updated_at =now;
-        Long created = milliSecond;
-        Long updated = milliSecond;
+        LocalDateTime updated_at = now;
+        Long created = currentTimeMillis;
+        Long updated = currentTimeMillis;
         Class<?> aClass = obj.getClass();
         Field id_field = ReflectUtil.getField(aClass, "id");
         id_field.setAccessible(true);
@@ -44,5 +43,4 @@ public class GenerateUtils {
         }
         return (T) obj;
     }
-
 }
