@@ -10,7 +10,7 @@ pipeline {
 
     // hidden 标签jenkins需要安装 Hidden Parameter 插件
     parameters {
-          choice choices: ['*/master', '*/dev'], description: '选择的branch', name: 'branch'
+          choice choices: ['*/master', '*/dev','*/blog'], description: '选择的branch', name: 'branch'
           hidden name: 'publisher_remoteDirectory', defaultValue: '/data/deploy/lucifer-cloud/blog/', description:'ssh远程文件夹'
           hidden name: 'publisher_sourceFiles', defaultValue: 'blog-service-1.0.1-SNAPSHOT-exec.jar', description:'ssh远程构建文件'
           hidden name: 'publisher_startFiles', defaultValue: 'start.sh', description:'ssh远程启动文件'
