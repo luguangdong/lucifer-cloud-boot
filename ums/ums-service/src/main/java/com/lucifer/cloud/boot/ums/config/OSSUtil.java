@@ -1,14 +1,17 @@
 package com.lucifer.cloud.boot.ums.config;
 
+import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.CannedAccessControlList;
 import com.aliyun.oss.model.ObjectMetadata;
-import com.aliyun.oss.model.PutObjectResult;
+import com.aliyun.oss.model.VoidResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartFile;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -38,70 +41,113 @@ public class OSSUtil {
     private String dir;
 
 
-
-
-
-    /**
-     * 删除单个图片
-     */
-    public void deleteImg(String url) {
+    public static void main(String[] args) {
+        String endpoint ="https://oss-cn-beijing.aliyuncs.com";
+        String accessKeyId ="";
+        String accessKeySecret ="";
+        String bucket ="lucifer-cloud";
+        String dir ="blog";
+        String objectName  = "blog/1738512444349272064/blog/aa.jpg";
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-        url = dir + url;
-        ossClient.deleteObject(bucket, url);
+        VoidResult result = ossClient.deleteObject(bucket, objectName);
         ossClient.shutdown();
     }
 
+
     /**
-     * 上传图片
+     * 删除文件
+     * @param objectName
+     * 填写objectName完整路径，例如exampledir/exampleobject.txt。objectName完整路径中不能包含Bucket名称。
      */
-    public String uploadImg2Oss(MultipartFile file, String fileName){
+    public void deleteObject(String objectName) {
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
         try {
-            InputStream inputStream = file.getInputStream();
-            this.uploadFile2OSS(inputStream, fileName);
-            String url = "https://" + bucket + "." + endpoint + "/" + dir + fileName;
+            ossClient.deleteObject(bucket, objectName);
+        } catch (OSSException oe) {
+            log.error("服务端OSS删除文件={}失败。Host ID={},Request ID={},Error Code={},Error Message={}",
+                    objectName,oe.getHostId(),oe.getRequestId(),oe.getErrorCode(),oe.getMessage()
+                    );
+        } catch (ClientException ce) {
+            log.error("客户端Client删除文件={}失败。Error Message={}",
+                    objectName,ce.getMessage()
+            );
+        } finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
+            }
+        }
+    }
+
+
+    /**
+     * 上传文件
+     */
+    public String putObject(String fileName) {
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+        try {
+            InputStream inputStream = new FileInputStream(fileName);
+            ossClient.putObject(bucket, dir + "/" +fileName, inputStream);
+            String url = "https://" + bucket + "." + endpoint + "/" + dir + "/" + fileName;
             return url;
-        } catch (Exception e) {
-            log.error("图片上传失败{}",e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (OSSException oe) {
+            log.error("服务端OSS上传文件={}失败。Host ID={},Request ID={},Error Code={},Error Message={}",
+                    fileName,oe.getHostId(),oe.getRequestId(),oe.getErrorCode(),oe.getMessage()
+            );
+        } catch (ClientException ce) {
+            log.error("客户端Client删除文件={}失败。Error Message={}",
+                    fileName,ce.getMessage()
+            );
+        }  finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
+            }
         }
         return null;
     }
 
     /**
-     * 上传到OSS服务器 如果同名文件会覆盖服务器上的
+     * 上传图片
      */
-    public String uploadFile2OSS(InputStream instream, String fileName) {
-        String ret = "";
+    public String putImgObject(MultipartFile file, String fileName){
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
         try {
-            OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-            // 创建上传Object的Metadata
+            InputStream inputStream = file.getInputStream();
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setObjectAcl(CannedAccessControlList.PublicRead);
-            objectMetadata.setContentLength(instream.available());
+            objectMetadata.setContentLength(inputStream.available());
             objectMetadata.setCacheControl("no-cache");
             objectMetadata.setHeader("Pragma", "no-cache");
-            objectMetadata.setContentType(getcontentType(fileName.substring(fileName.lastIndexOf("."))));
+            objectMetadata.setContentType(getContentType(fileName.substring(fileName.lastIndexOf("."))));
             objectMetadata.setContentDisposition("inline;filename=" + fileName);
-            // 上传文件
-            PutObjectResult putResult = ossClient.putObject(bucket, dir + "/" +fileName, instream, objectMetadata);
-            ret = putResult.getETag();
+            ossClient.putObject(bucket, dir + "/" +fileName, inputStream, objectMetadata);
+            String url = "https://" + bucket + "." + endpoint + "/" + dir + "/" + fileName;
+            return url;
         } catch (IOException e) {
-            log.error("文件上传失败{}",e);
-        } finally {
-            try {
-                if (instream != null) {
-                    instream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (OSSException oe) {
+            log.error("服务端OSS上传图片文件={}失败。Host ID={},Request ID={},Error Code={},Error Message={}",
+                    fileName,oe.getHostId(),oe.getRequestId(),oe.getErrorCode(),oe.getMessage()
+            );
+        } catch (ClientException ce) {
+            log.error("客户端Client删除图片文件={}失败。Error Message={}",
+                    fileName,ce.getMessage()
+            );
+        }  finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
             }
         }
-        return ret;
+        return null;
     }
+
+
 
     /**
      * Description: 判断OSS服务文件上传时文件的contentType
      */
-    public static String getcontentType(String filenameExtension) {
+    public static String getContentType(String filenameExtension) {
         if (filenameExtension.equalsIgnoreCase("bmp")) {
             return "image/bmp";
         }
