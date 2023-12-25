@@ -1,4 +1,5 @@
 package com.lucifer.cloud.boot.blog.util;
+import cn.hutool.core.convert.NumberWithFormat;
 import cn.hutool.json.JSONObject;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
@@ -37,7 +38,8 @@ public class UserSystem {
         String token = token(request);
         JWT jwt = JWTUtil.parseToken(token);
         JSONObject claimsJson = jwt.getPayload().getClaimsJson();
-        String uniqueId = (String) claimsJson.get(SecurityConstants.TOKEN_UNIQUE_ID);
+        NumberWithFormat numberWithFormat = (NumberWithFormat) claimsJson.get(SecurityConstants.TOKEN_UNIQUE_ID);
+        String uniqueId = String.valueOf(numberWithFormat.intValue());
         return Long.parseLong(uniqueId);
     }
 
