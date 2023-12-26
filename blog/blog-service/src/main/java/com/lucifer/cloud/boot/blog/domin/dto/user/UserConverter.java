@@ -64,6 +64,10 @@ public class UserConverter {
         Long id = inId.longValue();
         user.setId(id);
         user.setUid(IdUtil.getSnowflakeNextId());
+        if(Objects.nonNull(jsonUser.get("uniqueId"))){
+            String uniqueId = (String) jsonUser.get("uniqueId");
+            user.setUniqueId(uniqueId);
+        }
         user.setUsername((String) jsonUser.get("name"));
         if(Objects.nonNull(jsonUser.get("mobile"))){
             String strMobile = (String) jsonUser.get("mobile");

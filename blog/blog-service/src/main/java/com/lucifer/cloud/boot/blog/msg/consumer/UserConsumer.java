@@ -36,7 +36,7 @@ public class UserConsumer {
         String name = (String)consumerRecord.key();
         String value = (String) consumerRecord.value();
         JSONObject jsonUser = JSONUtil.parseObj(value);
-        log.info("人员注册--博客人员系统接收消息成功。name={}",name);
+        log.info("人员注册--博客人员系统接收消息成功。user={}",jsonUser);
         User user = UserConverter.convertJson2User(jsonUser);
         userService.save(user);
         log.info("人员注册--博客人员入库成功。name={}",name);

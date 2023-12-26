@@ -23,80 +23,86 @@ public class User extends BaseBo implements Serializable {
 
 
     /**
-     * 文章标题
+     * 第三方登录唯一ID
+     */
+    private String uniqueId;
+
+
+    /**
+     * 用户名
      */
     private String username;
 
     /**
-     * 文章副标题
+     * 密码
      */
     private String password;
 
     /**
-     * 文章内容
+     * 性别
      */
     private Integer gender;
 
     /**
-     * 背景图片
+     * 年龄
      */
     private Integer age;
 
     /**
-     * 背景图片
+     * 生日
      */
     private Long birthday;
 
     /**
-     * 背景图片
+     * 住址
      */
     private String address;
 
     /**
-     * 文章标签
+     * 电话
      */
     private Long tel;
 
     /**
-     * 点赞数
+     * 邮箱
      */
     private String email;
 
     /**
-     * 评论数
+     * qq
      */
     private Long qq;
 
     /**
-     * 评论数
+     * 微信
      */
     private String wechat;
 
 
     /**
-     * 评论数
+     * gitHub
      */
     private String git_hub;
 
     /**
-     * 评论数
+     * 头像图片
      */
     private String avatar_url;
 
 
     /**
-     * 评论数
+     * 背景图片
      */
     private String background_image;
 
 
     /**
-     * 评论数
+     * 座右铭
      */
     private String motto;
 
     /**
-     * 评论数
+     * 权限
      */
     private String role;
 
