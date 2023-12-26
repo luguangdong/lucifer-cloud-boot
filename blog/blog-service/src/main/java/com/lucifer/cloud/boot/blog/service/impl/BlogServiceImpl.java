@@ -16,7 +16,7 @@ import com.lucifer.cloud.boot.blog.mapper.BlogMapper;
 import com.lucifer.cloud.boot.blog.mapper.TagMapper;
 import com.lucifer.cloud.boot.blog.mapper.UserMapper;
 import com.lucifer.cloud.boot.blog.service.BlogService;
-import com.lucifer.cloud.boot.blog.util.UserSystem;
+import com.lucifer.cloud.boot.blog.config.UserSystem;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;

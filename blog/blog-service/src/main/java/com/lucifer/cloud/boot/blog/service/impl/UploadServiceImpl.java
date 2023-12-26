@@ -7,7 +7,7 @@ import com.lucifer.cloud.boot.blog.domin.bo.Upload;
 import com.lucifer.cloud.boot.blog.domin.dto.upload.UploadConverter;
 import com.lucifer.cloud.boot.blog.mapper.UploadMapper;
 import com.lucifer.cloud.boot.blog.service.UploadService;
-import com.lucifer.cloud.boot.blog.util.UserSystem;
+import com.lucifer.cloud.boot.blog.config.UserSystem;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
