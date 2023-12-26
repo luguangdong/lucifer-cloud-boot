@@ -77,6 +77,8 @@ public class UserConverter {
         LocalDateTime updated_at = LocalDateTime.ofInstant(Instant.ofEpochMilli(updateTime), ZoneId.systemDefault());
         user.setCreated_at(created_at);
         user.setUpdated_at(updated_at);
+        user.setAvatar_url("0/avatar/avatar.jpg");
+        user.setBackground_image("0/images/background_image.jpg");
         return user;
     }
 }
