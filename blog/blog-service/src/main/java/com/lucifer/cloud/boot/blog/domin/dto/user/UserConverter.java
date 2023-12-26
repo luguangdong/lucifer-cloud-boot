@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -21,20 +22,22 @@ public class UserConverter {
 
     public static UserInfo convertInfo(User user){
         UserInfo info = new UserInfo();
-        info.setId(String.valueOf(user.getId()));
-        info.setUid(String.valueOf(user.getUid()));
-        info.setUsername(user.getUsername());
-        info.setGender(user.getGender());
-        info.setAvatar_url(user.getAvatar_url());
-        info.setAge(user.getAge());
-        info.setEmail(user.getEmail());
-        info.setTel(user.getTel());
-        info.setQq(user.getQq());
-        info.setWechat(user.getWechat());
-        info.setGit_hub(user.getGit_hub());
-        info.setBackground_image(user.getBackground_image());
-        info.setMotto(user.getMotto());
-        info.setRole(user.getRole());
+        if(Objects.nonNull(user)){
+            info.setId(String.valueOf(user.getId()));
+            info.setUid(String.valueOf(user.getUid()));
+            info.setUsername(user.getUsername());
+            info.setGender(user.getGender());
+            info.setAvatar_url(user.getAvatar_url());
+            info.setAge(user.getAge());
+            info.setEmail(user.getEmail());
+            info.setTel(user.getTel());
+            info.setQq(user.getQq());
+            info.setWechat(user.getWechat());
+            info.setGit_hub(user.getGit_hub());
+            info.setBackground_image(user.getBackground_image());
+            info.setMotto(user.getMotto());
+            info.setRole(user.getRole());
+        }
         return info;
     }
 
