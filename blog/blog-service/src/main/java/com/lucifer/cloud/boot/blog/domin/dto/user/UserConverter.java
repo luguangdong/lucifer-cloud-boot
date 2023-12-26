@@ -65,10 +65,14 @@ public class UserConverter {
         user.setId(id);
         user.setUid(IdUtil.getSnowflakeNextId());
         user.setUsername((String) jsonUser.get("name"));
-        String strMobile = (String) jsonUser.get("mobile");
-        long mobile = Long.parseLong(strMobile);
-        user.setTel(mobile);
-        user.setEmail((String) jsonUser.get("email"));
+        if(Objects.nonNull(jsonUser.get("mobile"))){
+            String strMobile = (String) jsonUser.get("mobile");
+            long mobile = Long.parseLong(strMobile);
+            user.setTel(mobile);
+        }
+        if(Objects.nonNull(jsonUser.get("email"))){
+            user.setEmail((String) jsonUser.get("email"));
+        }
         Long createTime = (Long) jsonUser.get("createTime");
         Long updateTime = (Long) jsonUser.get("updateTime");
         user.setCreated(createTime);
