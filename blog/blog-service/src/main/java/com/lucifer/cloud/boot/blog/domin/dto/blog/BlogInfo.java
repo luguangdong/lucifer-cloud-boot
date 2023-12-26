@@ -12,8 +12,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BlogInfo {
     private String uid;
-    private String created;
-    private String updated;
+    private Long created;
+    private Long updated;
 
     private String title;
 

@@ -21,12 +21,8 @@ public class BlogConverter {
                 .map(blog -> {
                     BlogInfo info = new BlogInfo();
                     BeanUtils.copyProperties(blog,info);
-                    String created = String.valueOf(blog.getCreated());
-                    String updated = String.valueOf(blog.getUpdated());
                     String uid = String.valueOf(blog.getUid());
                     String user_id = String.valueOf(blog.getUser_id());
-                    info.setCreated(created);
-                    info.setUpdated(updated);
                     info.setUid(uid);
                     info.setUser_id(user_id);
                     info.setUser_info(user_info);
