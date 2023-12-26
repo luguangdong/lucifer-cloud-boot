@@ -77,14 +77,18 @@ public class UserConverter {
         if(Objects.nonNull(jsonUser.get("email"))){
             user.setEmail((String) jsonUser.get("email"));
         }
-        Long createTime = (Long) jsonUser.get("createTime");
-        Long updateTime = (Long) jsonUser.get("updateTime");
-        user.setCreated(createTime);
-        user.setUpdated(updateTime);
-        LocalDateTime created_at = LocalDateTime.ofInstant(Instant.ofEpochMilli(createTime), ZoneId.systemDefault());
-        LocalDateTime updated_at = LocalDateTime.ofInstant(Instant.ofEpochMilli(updateTime), ZoneId.systemDefault());
-        user.setCreated_at(created_at);
-        user.setUpdated_at(updated_at);
+        if(Objects.nonNull(jsonUser.get("createTime"))){
+            Long createTime = (Long) jsonUser.get("createTime");
+            user.setCreated(createTime);
+            LocalDateTime created_at = LocalDateTime.ofInstant(Instant.ofEpochMilli(createTime), ZoneId.systemDefault());
+            user.setCreated_at(created_at);
+        }
+        if(Objects.nonNull(jsonUser.get("updateTime"))){
+            Long updateTime = (Long) jsonUser.get("updateTime");
+            user.setUpdated(updateTime);
+            LocalDateTime updated_at = LocalDateTime.ofInstant(Instant.ofEpochMilli(updateTime), ZoneId.systemDefault());
+            user.setUpdated_at(updated_at);
+        }
         user.setAvatar_url("0/avatar/avatar.jpg");
         user.setBackground_image("0/images/background_image.jpg");
         return user;
