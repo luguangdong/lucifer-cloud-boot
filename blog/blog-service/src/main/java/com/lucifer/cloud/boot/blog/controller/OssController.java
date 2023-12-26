@@ -1,20 +1,23 @@
 package com.lucifer.cloud.boot.blog.controller;
+
 import com.lucifer.cloud.boot.blog.service.UploadService;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 /**
  * @author lucifer
- * @date 2023/12/21 15:31
+ * @date 2023/12/26 10:58
  */
 @RestController
-@RequestMapping("upload")
-public class UploadController {
+@RequestMapping("cos")
+public class OssController {
 
     @Resource
     private HttpServletRequest request;
@@ -22,11 +25,12 @@ public class UploadController {
     @Resource
     private UploadService uploadService;
 
-
-    @GetMapping("del")
-    public Result<Boolean> delete(
-            @RequestParam(value = "key",required = false)    String key
+    @PostMapping("upload")
+    public Result<Map> upload(
+            String file_name,
+            String path,
+            MultipartFile file
     ) {
-        return Result.success("当前图片有其它引用",uploadService.delete(request,key));
+        return Result.success(uploadService.upload(request,path,file_name,file));
     }
 }

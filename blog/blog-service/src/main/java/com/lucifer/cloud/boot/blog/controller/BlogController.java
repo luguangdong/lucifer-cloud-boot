@@ -51,4 +51,11 @@ public class BlogController {
     ) {
         return Result.success(blogService.blogUpdate(request,blogReq));
     }
+
+    @GetMapping("delete")
+    public Result<Boolean> blogDelete(
+            @RequestParam(value = "uid",required = false) String uid
+    ) {
+        return Result.success(blogService.blogDelete(request,uid));
+    }
 }

@@ -63,10 +63,11 @@ public class OSSUtil {
      * @param objectName
      * 填写objectName完整路径，例如exampledir/exampleobject.txt。objectName完整路径中不能包含Bucket名称。
      */
-    public void deleteObject(String objectName) {
+    public Boolean deleteObject(String objectName) {
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
         try {
             ossClient.deleteObject(bucket, objectName);
+            return Boolean.TRUE;
         } catch (OSSException oe) {
             log.error("服务端OSS删除文件={}失败。Host ID={},Request ID={},Error Code={},Error Message={}",
                     objectName,oe.getHostId(),oe.getRequestId(),oe.getErrorCode(),oe.getMessage()
@@ -80,6 +81,7 @@ public class OSSUtil {
                 ossClient.shutdown();
             }
         }
+        return Boolean.FALSE;
     }
 
 

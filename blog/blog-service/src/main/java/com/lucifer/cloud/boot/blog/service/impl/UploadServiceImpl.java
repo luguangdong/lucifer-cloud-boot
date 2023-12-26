@@ -1,6 +1,7 @@
 package com.lucifer.cloud.boot.blog.service.impl;
 
 import com.alibaba.nacos.shaded.com.google.common.collect.Maps;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.config.OSSUtil;
 import com.lucifer.cloud.boot.blog.domin.bo.Upload;
@@ -38,5 +39,19 @@ public class UploadServiceImpl extends ServiceImpl<UploadMapper, Upload> impleme
            return UploadConverter.convertImgRes2Res(imgResult);
         }
         return Maps.newHashMap();
+    }
+
+    @Override
+    public Boolean delete(HttpServletRequest request, String key) {
+        Long userId = userSystem.userId(request);
+        String fileName = UploadConverter.convertKey2FileName(key);
+        Boolean deleteObject = ossUtil.deleteObject(key);
+        if (deleteObject){
+            return remove(Wrappers.lambdaQuery(Upload.class)
+                    .eq(Upload::getUser_id,userId)
+                    .eq(Upload::getExt,fileName)
+            );
+        }
+        return Boolean.FALSE;
     }
 }

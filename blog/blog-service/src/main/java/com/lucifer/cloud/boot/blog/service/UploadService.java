@@ -14,5 +14,7 @@ public interface UploadService extends IService<Upload> {
 
     Map upload(HttpServletRequest request, String path,String file_name,MultipartFile file);
 
+    Boolean delete(HttpServletRequest request, String key);
+
 
 }

@@ -1,6 +1,7 @@
 package com.lucifer.cloud.boot.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
 import com.lucifer.cloud.boot.blog.domin.bo.Tag;
@@ -37,7 +38,6 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     @Resource
     private UserMapper userMapper;
 
-
     @Resource
     private TagMapper tagMapper;
 
@@ -46,8 +46,10 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
         Long userId = userSystem.userId(request);
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
-        List<Blog> blogList = list(Wrappers.lambdaQuery(Blog.class).eq(Blog::getUser_id, userId));
-        int count = blogList.size();
+        Page<Blog> rowPage = new Page<>(page, limit);
+        Page<Blog> blogPage = this.baseMapper.selectPage(rowPage, Wrappers.lambdaQuery(Blog.class).eq(Blog::getUser_id, userId));
+        List<Blog> blogList = blogPage.getRecords();
+        long count = blogPage.getTotal();
         List<BlogInfo> blogInfoList = BlogConverter.convertList2InfoList(blogList, user_info);
         BlogInfoDto blogInfoDto = BlogInfoDto.builder().count(count).blog_info(blogInfoList).build();
         return blogInfoDto;
@@ -70,6 +72,15 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
                 .set(Blog::getSub_title,blog.getSub_title())
                 .set(Blog::getContent,blog.getContent())
                 .eq(Blog::getUid, blog.getUid())
+        );
+    }
+
+    @Override
+    public Boolean blogDelete(HttpServletRequest request, String uid) {
+        Long userId = userSystem.userId(request);
+        return remove(Wrappers.lambdaQuery(Blog.class)
+                .eq(Blog::getUid,Long.parseLong(uid))
+                .eq(Blog::getUser_id,userId)
         );
     }
 

@@ -19,4 +19,6 @@ public interface BlogService extends IService<Blog> {
 
     Boolean blogUpdate(HttpServletRequest request,BlogReq blogReq);
 
+    Boolean blogDelete(HttpServletRequest request,String uid);
+
 }

@@ -33,4 +33,9 @@ public class UploadConverter {
         map.put("file_id",imgResult.get("url"));
         return map;
     }
+
+
+    public static String convertKey2FileName(String key){
+        return key.substring(key.lastIndexOf("/")+1);
+    }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BlogInfoDto {
 
-    private Integer count;
+    private Long count;
 
     private List<BlogInfo> blog_info;
 
