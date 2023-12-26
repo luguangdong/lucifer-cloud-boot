@@ -30,8 +30,8 @@ public class BlogController {
     @GetMapping("info")
     public Result<BlogInfoDto> blogInfo(
             @RequestParam(value = "_t",required = false) Long _t,
-            @RequestParam(value = "page",required = false) Integer page,
-            @RequestParam(value = "limit",required = false) Integer limit
+            @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
+            @RequestParam(value = "limit",required = false,defaultValue = "1") Integer limit
     ) {
 
         return Result.success(blogService.blogInfo(request,_t,page,limit));
