@@ -1,7 +1,12 @@
 package com.lucifer.cloud.boot.blog.controller;
+import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionDto;
 import com.lucifer.cloud.boot.blog.service.ExhibitionService;
+import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -12,7 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("exhibition")
 public class ExhibitionController {
+
+    @Resource
+    private HttpServletRequest request;
     @Resource
     private ExhibitionService exhibitionService;
+
+
+    @GetMapping("info")
+    public Result<ExhibitionDto> Info(
+            @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
+            @RequestParam(value = "limit",required = false,defaultValue = "1") Integer limit,
+            @RequestParam(value = "type",required = false) Integer type,
+             @RequestParam(value = "sort",required = false) String sort
+    ) {
+
+        return Result.success(exhibitionService.info(request,page,limit,type,sort));
+    }
 
 }
