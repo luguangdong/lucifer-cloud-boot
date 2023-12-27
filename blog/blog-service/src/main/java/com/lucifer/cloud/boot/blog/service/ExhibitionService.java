@@ -1,8 +1,8 @@
 package com.lucifer.cloud.boot.blog.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
-import com.lucifer.cloud.boot.blog.domin.dto.blog.BlogInfoDto;
 import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionDto;
+import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionReq;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
@@ -15,4 +15,5 @@ public interface ExhibitionService extends IService<Exhibition> {
     ExhibitionDto info(HttpServletRequest request, Integer page, Integer limit, Integer type, String sort);
 
 
+    Boolean create(HttpServletRequest request, ExhibitionReq exhibitionReq);
 }

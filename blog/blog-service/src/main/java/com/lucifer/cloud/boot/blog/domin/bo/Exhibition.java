@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * @author lucifer
@@ -16,7 +17,7 @@ import java.io.Serial;
 @JsonSerialize
 @TableName("exhibition")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Exhibition {
+public class Exhibition extends BaseBo implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;

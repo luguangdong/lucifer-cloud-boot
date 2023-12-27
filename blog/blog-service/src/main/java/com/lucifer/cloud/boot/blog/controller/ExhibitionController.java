@@ -1,10 +1,14 @@
 package com.lucifer.cloud.boot.blog.controller;
+import com.lucifer.cloud.boot.blog.domin.dto.blog.BlogReq;
 import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionDto;
+import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionReq;
 import com.lucifer.cloud.boot.blog.service.ExhibitionService;
 import com.lucifer.cloud.commons.model.Result;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +37,14 @@ public class ExhibitionController {
     ) {
 
         return Result.success(exhibitionService.info(request,page,limit,type,sort));
+    }
+
+
+    @PostMapping("create")
+    public Result<Boolean> create(
+            @RequestBody ExhibitionReq exhibitionReq
+    ) {
+        return Result.success(exhibitionService.create(request,exhibitionReq));
     }
 
 }

@@ -1,6 +1,4 @@
 package com.lucifer.cloud.boot.blog.domin.dto.tag;
-
-
 import com.lucifer.cloud.boot.blog.config.BlogType;
 import com.lucifer.cloud.boot.blog.domin.bo.Tag;
 import com.lucifer.cloud.boot.blog.domin.dto.blog.BlogReq;
@@ -19,5 +17,24 @@ public class TagConverter {
         tag.setType(BlogType.BLOG.getCode());
         tag.setUser_id(userId);
         return tag;
+    }
+
+
+    public static Tag convertTagReq2Tag(String name,Long userId){
+        Tag tag = new Tag();
+        tag = (Tag) GenerateUtils.generateFiledValue(tag);
+        tag.setName(name);
+        tag.setType(BlogType.IMAGE.getCode());
+        tag.setUser_id(userId);
+        return tag;
+    }
+
+
+    public static TagInfo convertTag2TagInfo(Tag tag){
+       return TagInfo.builder()
+                .name(tag.getName())
+                .type(tag.getType())
+                .uid(String.valueOf(tag.getUid()))
+                .build();
     }
 }

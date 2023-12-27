@@ -7,6 +7,7 @@ import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
 import com.lucifer.cloud.boot.blog.domin.bo.User;
 import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionConverter;
 import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionDto;
+import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionReq;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserConverter;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserInfo;
 import com.lucifer.cloud.boot.blog.mapper.ExhibitionMapper;
@@ -43,5 +44,12 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
         long count = exhibitionPage.getTotal();
         ExhibitionDto exhibitionDto = ExhibitionConverter.converter2Dto(exhibitionList, count, user_info);
         return exhibitionDto;
+    }
+
+    @Override
+    public Boolean create(HttpServletRequest request, ExhibitionReq exhibitionReq) {
+        Long userId = userSystem.userId(request);
+        Exhibition exhibition = ExhibitionConverter.convertReq2Exhibition(exhibitionReq, userId);
+        return save(exhibition);
     }
 }

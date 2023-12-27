@@ -1,10 +1,9 @@
 package com.lucifer.cloud.boot.blog.domin.dto.exhitition;
-
 import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
 import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserInfo;
+import com.lucifer.cloud.boot.blog.util.GenerateUtils;
 import org.springframework.beans.BeanUtils;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,5 +26,13 @@ public class ExhibitionConverter {
 
 
         return ExhibitionDto.builder().exhibitions(exhibitionUserList).count(count).build();
+    }
+
+    public static Exhibition convertReq2Exhibition(ExhibitionReq exhibitionReq, Long userId) {
+        Exhibition exhibition = new Exhibition();
+        exhibition = (Exhibition) GenerateUtils.generateFiledValue(exhibition);
+        exhibition.setUser_id(userId);
+        BeanUtils.copyProperties(exhibitionReq,exhibition);
+        return exhibition;
     }
 }
