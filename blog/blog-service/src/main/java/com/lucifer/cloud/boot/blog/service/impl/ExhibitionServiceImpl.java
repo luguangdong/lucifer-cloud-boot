@@ -52,4 +52,10 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
         Exhibition exhibition = ExhibitionConverter.convertReq2Exhibition(exhibitionReq, userId);
         return save(exhibition);
     }
+
+    @Override
+    public Boolean delete(HttpServletRequest request, String uid) {
+        Long userId = userSystem.userId(request);
+        return remove(Wrappers.lambdaQuery(Exhibition.class).eq(Exhibition::getUser_id, userId).eq(Exhibition::getUid, uid));
+    }
 }

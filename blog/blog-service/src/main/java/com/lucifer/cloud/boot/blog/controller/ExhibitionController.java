@@ -1,5 +1,4 @@
 package com.lucifer.cloud.boot.blog.controller;
-import com.lucifer.cloud.boot.blog.domin.dto.blog.BlogReq;
 import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionDto;
 import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionReq;
 import com.lucifer.cloud.boot.blog.service.ExhibitionService;
@@ -33,7 +32,7 @@ public class ExhibitionController {
             @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
             @RequestParam(value = "limit",required = false,defaultValue = "1") Integer limit,
             @RequestParam(value = "type",required = false) Integer type,
-             @RequestParam(value = "sort",required = false) String sort
+            @RequestParam(value = "sort",required = false) String sort
     ) {
 
         return Result.success(exhibitionService.info(request,page,limit,type,sort));
@@ -45,6 +44,13 @@ public class ExhibitionController {
             @RequestBody ExhibitionReq exhibitionReq
     ) {
         return Result.success(exhibitionService.create(request,exhibitionReq));
+    }
+
+    @PostMapping("del")
+    public Result<Boolean> delete(
+            @RequestParam(value = "uid",required = false) String uid
+    ) {
+        return Result.success(exhibitionService.delete(request,uid));
     }
 
 }

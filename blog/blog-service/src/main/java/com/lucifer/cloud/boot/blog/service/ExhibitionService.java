@@ -16,4 +16,6 @@ public interface ExhibitionService extends IService<Exhibition> {
 
 
     Boolean create(HttpServletRequest request, ExhibitionReq exhibitionReq);
+
+    Boolean delete(HttpServletRequest request, String uid);
 }

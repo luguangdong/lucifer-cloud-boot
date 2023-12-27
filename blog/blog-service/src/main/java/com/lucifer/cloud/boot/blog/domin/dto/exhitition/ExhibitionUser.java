@@ -90,12 +90,12 @@ public class ExhibitionUser {
 
     private Long updated;
 
-    private Long uid;
+    private String uid;
 
     /**
      * 该图片上传者 id
      */
-    private Long user_id;
+    private String user_id;
 
     private UserInfo user_info;
 }
