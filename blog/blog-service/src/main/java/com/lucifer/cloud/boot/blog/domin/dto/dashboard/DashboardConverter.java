@@ -35,8 +35,9 @@ public class DashboardConverter {
                     return createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 }, Collectors.counting()));
 
-        Map<String, Long> moreMap = blogDateMap.size() >= exhibitionDateMap.size() ? blogDateMap : exhibitionDateMap;
-        Map<String, Long> lessMap = blogDateMap.size() < exhibitionDateMap.size() ? blogDateMap : exhibitionDateMap;
+
+        Map<String, Long> moreMap = blogList.size() >= exhibitionList.size() ? blogDateMap : exhibitionDateMap;
+        Map<String, Long> lessMap = blogList.size() < exhibitionList.size() ? blogDateMap : exhibitionDateMap;
 
         List<DashboardInfo> dashboard = Optional.ofNullable(moreMap).orElse(Maps.newHashMap())
                 .entrySet()
