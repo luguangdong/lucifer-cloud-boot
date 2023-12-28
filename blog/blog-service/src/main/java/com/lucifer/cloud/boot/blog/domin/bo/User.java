@@ -1,5 +1,7 @@
 package com.lucifer.cloud.boot.blog.domin.bo;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -31,6 +33,7 @@ public class User extends BaseBo implements Serializable {
     /**
      * 用户名
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String username;
 
     /**
@@ -41,64 +44,76 @@ public class User extends BaseBo implements Serializable {
     /**
      * 性别
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private Integer gender;
 
     /**
      * 年龄
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private Integer age;
 
     /**
      * 生日
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private Long birthday;
 
     /**
      * 住址
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String address;
 
     /**
      * 电话
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private Long tel;
 
     /**
      * 邮箱
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String email;
 
     /**
      * qq
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private Long qq;
 
     /**
      * 微信
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String wechat;
 
 
     /**
      * gitHub
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String git_hub;
 
     /**
      * 头像图片
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String avatar_url;
 
 
     /**
      * 背景图片
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String background_image;
 
 
     /**
      * 座右铭
      */
+    @TableField(updateStrategy = FieldStrategy.DEFAULT)
     private String motto;
 
     /**
