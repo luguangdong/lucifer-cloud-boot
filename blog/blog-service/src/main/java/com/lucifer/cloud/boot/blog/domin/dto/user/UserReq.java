@@ -15,6 +15,8 @@ public class UserReq {
 
     private String avatar_url;
 
+    private String background_image;
+
     private Long tel;
 
     private String motto;

@@ -1,5 +1,6 @@
 package com.lucifer.cloud.boot.blog.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
@@ -50,16 +51,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Boolean userUpdate(UserReq userReq) {
-        return update(Wrappers.lambdaUpdate(User.class)
-                .set(User::getUsername,userReq.getUsername())
-                .set(User::getAvatar_url,userReq.getAvatar_url())
-                .set(User::getTel,userReq.getTel())
-                .set(User::getMotto,userReq.getMotto())
-                .set(User::getWechat,userReq.getWechat())
-                .set(User::getQq,userReq.getQq())
-                .set(User::getGit_hub,userReq.getGit_hub())
-                .set(User::getGender,userReq.getGender())
-                .eq(User::getUid, userReq.getUid()));
+        LambdaUpdateWrapper<User> lambdaUpdateWrapper = UserConverter.convertUpdateWrapper(userReq);
+        return update(lambdaUpdateWrapper);
     }
 
     @Override

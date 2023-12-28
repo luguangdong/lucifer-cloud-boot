@@ -3,9 +3,11 @@ package com.lucifer.cloud.boot.blog.domin.dto.user;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONObject;
 import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
 import com.lucifer.cloud.boot.blog.domin.bo.Follow;
 import com.lucifer.cloud.boot.blog.domin.bo.User;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -92,5 +94,42 @@ public class UserConverter {
         user.setAvatar_url("0/avatar/avatar.jpg");
         user.setBackground_image("0/images/background_image.jpg");
         return user;
+    }
+
+
+    public static LambdaUpdateWrapper<User> convertUpdateWrapper( UserReq userReq){
+        LambdaUpdateWrapper<User> update = new LambdaUpdateWrapper<>();
+        update.eq(User::getUid, userReq.getUid());
+        if(StringUtils.isNotBlank(userReq.getUsername())){
+            update.set(User::getUsername,userReq.getUsername());
+        }
+        if(StringUtils.isNotBlank(userReq.getAvatar_url())){
+            update.set(User::getAvatar_url,userReq.getAvatar_url());
+        }
+        if(StringUtils.isNotBlank(userReq.getBackground_image())){
+            update.set(User::getBackground_image,userReq.getBackground_image());
+        }
+        if(Objects.nonNull(userReq.getTel())){
+            update.set(User::getTel,userReq.getTel());
+        }
+        if(StringUtils.isNotBlank(userReq.getMotto())){
+            update.set(User::getMotto,userReq.getMotto());
+        }
+        if(StringUtils.isNotBlank(userReq.getWechat())){
+            update.set(User::getWechat,userReq.getWechat());
+        }
+        if(StringUtils.isNotBlank(userReq.getQq())){
+            update.set(User::getQq,userReq.getQq());
+        }
+        if(StringUtils.isNotBlank(userReq.getGit_hub())){
+            update.set(User::getGit_hub,userReq.getGit_hub());
+        }
+        if(Objects.nonNull(userReq.getGender())){
+            update.set(User::getGender,userReq.getGender());
+        }
+        if(StringUtils.isNotBlank(userReq.getGit_hub())){
+            update.set(User::getGit_hub,userReq.getGit_hub());
+        }
+        return update;
     }
 }
