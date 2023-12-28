@@ -40,11 +40,11 @@ public class DashboardConverter {
         List<String> blogkeyList = Optional.ofNullable(blogDateMap).orElse(Maps.newHashMap())
                 .keySet()
                 .stream()
-                .toList();
+                .collect(Collectors.toList());
         List<String> exhibitionkeyList = Optional.ofNullable(exhibitionDateMap).orElse(Maps.newHashMap())
                 .keySet()
                 .stream()
-                .toList();
+                .collect(Collectors.toList());
         blogkeyList.addAll(exhibitionkeyList);
 
         List<DashboardInfo> dashboard = Optional.ofNullable(blogkeyList).orElse(Lists.newArrayList())
@@ -53,8 +53,8 @@ public class DashboardConverter {
                 .map(data -> {
                     DashboardInfo dashboardInfo = new DashboardInfo();
                     dashboardInfo.setName(data);
-                    dashboardInfo.setBlog_publish_value(String.valueOf(blogDateMap.get(data)));
-                    dashboardInfo.setExhibitions_publish_value(String.valueOf(exhibitionDateMap.get(data)));
+                    dashboardInfo.setBlog_publish_value(String.valueOf(blogDateMap.get(data) == null ? 0:blogDateMap.get(data)));
+                    dashboardInfo.setExhibitions_publish_value(String.valueOf(exhibitionDateMap.get(data) == null ? 0:exhibitionDateMap.get(data)));
                     return dashboardInfo;
                 }).collect(Collectors.toList());
 
