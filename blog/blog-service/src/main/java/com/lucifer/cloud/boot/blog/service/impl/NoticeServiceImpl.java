@@ -29,7 +29,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
     public NoticeDto info(HttpServletRequest request, Integer page, Integer limit) {
         Long userId = userSystem.userId(request);
         Page<Notice> rowPage = new Page<>(page, limit);
-        Page<Notice> noticePage = this.baseMapper.selectPage(rowPage, Wrappers.lambdaQuery(Notice.class).eq(Notice::getUser_id, userId));
+        Page<Notice> noticePage = this.baseMapper.selectPage(rowPage, Wrappers.lambdaQuery(Notice.class));
         List<Notice> noticeList = noticePage.getRecords();
         long total = noticePage.getTotal();
         return NoticeConverter.converterList2Dto(noticeList,total);

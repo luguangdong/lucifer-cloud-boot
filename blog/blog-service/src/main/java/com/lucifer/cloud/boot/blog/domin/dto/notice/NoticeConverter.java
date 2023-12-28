@@ -33,7 +33,7 @@ public class NoticeConverter {
         Notice notice = new Notice();
         notice = (Notice) GenerateUtils.generateFiledValue(notice);
         notice.setContent(content);
-        notice.setUid(userId);
+        notice.setUser_id(userId);
         return notice;
     }
 }
