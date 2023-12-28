@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 public class DashboardConverter {
 
     public static DashboardDto converter2Dto(List<Blog> blogList, List<Exhibition> exhibitionList,List<Follow> followList, User user ){
+
         Map<String, Long> blogDateMap = Optional.ofNullable(blogList).orElse(Lists.newArrayList())
                 .stream()
                 .collect(Collectors.groupingBy(blog -> {
@@ -36,27 +37,26 @@ public class DashboardConverter {
                 }, Collectors.counting()));
 
 
-        Map<String, Long> moreMap = blogList.size() >= exhibitionList.size() ? blogDateMap : exhibitionDateMap;
-        Map<String, Long> lessMap = blogList.size() < exhibitionList.size() ? blogDateMap : exhibitionDateMap;
-
-        List<DashboardInfo> dashboard = Optional.ofNullable(moreMap).orElse(Maps.newHashMap())
-                .entrySet()
+        List<String> blogkeyList = Optional.ofNullable(blogDateMap).orElse(Maps.newHashMap())
+                .keySet()
                 .stream()
-                .map(moreEntry -> {
+                .toList();
+        List<String> exhibitionkeyList = Optional.ofNullable(exhibitionDateMap).orElse(Maps.newHashMap())
+                .keySet()
+                .stream()
+                .toList();
+        blogkeyList.addAll(exhibitionkeyList);
+
+        List<DashboardInfo> dashboard = Optional.ofNullable(blogkeyList).orElse(Lists.newArrayList())
+                .stream()
+                .distinct()
+                .map(data -> {
                     DashboardInfo dashboardInfo = new DashboardInfo();
-                    dashboardInfo.setName(moreEntry.getKey());
-                    dashboardInfo.setBlog_publish_value(String.valueOf(moreEntry.getValue()));
-                    Optional.ofNullable(lessMap).orElse(Maps.newHashMap())
-                            .entrySet()
-                            .stream()
-                            .peek(lessEntry -> {
-                                if (moreEntry.getKey().equals(lessEntry.getKey())) {
-                                    dashboardInfo.setExhibitions_publish_value(String.valueOf(lessEntry.getValue()));
-                                }
-                            });
+                    dashboardInfo.setName(data);
+                    dashboardInfo.setBlog_publish_value(String.valueOf(blogDateMap.get(data)));
+                    dashboardInfo.setExhibitions_publish_value(String.valueOf(exhibitionDateMap.get(data)));
                     return dashboardInfo;
                 }).collect(Collectors.toList());
-
 
         List<DashboardExhibition> exhibitions = Optional.ofNullable(exhibitionList).orElse(Lists.newArrayList())
                 .stream()
