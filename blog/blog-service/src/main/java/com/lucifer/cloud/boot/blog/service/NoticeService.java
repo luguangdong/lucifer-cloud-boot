@@ -1,6 +1,8 @@
 package com.lucifer.cloud.boot.blog.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lucifer.cloud.boot.blog.domin.bo.Notice;
+import com.lucifer.cloud.boot.blog.domin.dto.notice.NoticeDto;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author lucifer
@@ -9,4 +11,7 @@ import com.lucifer.cloud.boot.blog.domin.bo.Notice;
 public interface NoticeService extends IService<Notice> {
 
 
+    NoticeDto info(HttpServletRequest request, Integer page, Integer limit);
+
+    Boolean create(HttpServletRequest request, String content);
 }
