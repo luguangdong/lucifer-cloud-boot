@@ -2,9 +2,11 @@ package com.lucifer.cloud.boot.blog.util;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ReflectUtil;
-
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * @author lucifer
@@ -44,5 +46,27 @@ public class GenerateUtils {
             throw new RuntimeException(e);
         }
         return (T) obj;
+    }
+
+
+    public static <T> T generateUpdateWrapper(Object obj,UpdateWrapper<T> updateWrapper,String... where) {
+        Class<?> aClass = obj.getClass();
+        Field[] fields = ReflectUtil.getFields(aClass);
+        for (Field field : fields) {
+            try {
+                field.setAccessible(true);
+                String name = field.getName();
+                Object value = field.get(obj);
+                if(Objects.nonNull(value) && !"null".equals(value) && !"".equals(value)){
+                    if(Arrays.stream(where).anyMatch(we -> we.equals(name))){
+                        updateWrapper.eq(name,value);
+                    }
+                    updateWrapper.set(name,value);
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return (T) updateWrapper;
     }
 }

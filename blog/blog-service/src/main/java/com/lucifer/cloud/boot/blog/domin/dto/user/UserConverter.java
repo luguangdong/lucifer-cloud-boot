@@ -97,7 +97,7 @@ public class UserConverter {
     }
 
 
-    public static LambdaUpdateWrapper<User> convertUpdateWrapper( UserReq userReq){
+    public static LambdaUpdateWrapper<User> convertUpdateWrapper(UserReq userReq){
         LambdaUpdateWrapper<User> update = new LambdaUpdateWrapper<>();
         update.eq(User::getUid, userReq.getUid());
         if(StringUtils.isNotBlank(userReq.getUsername())){

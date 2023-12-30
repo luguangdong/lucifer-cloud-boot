@@ -1,6 +1,6 @@
 package com.lucifer.cloud.boot.blog.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
@@ -16,6 +16,7 @@ import com.lucifer.cloud.boot.blog.mapper.FollowMapper;
 import com.lucifer.cloud.boot.blog.mapper.UserMapper;
 import com.lucifer.cloud.boot.blog.service.UserService;
 import com.lucifer.cloud.boot.blog.config.UserSystem;
+import com.lucifer.cloud.boot.blog.util.GenerateUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Boolean userUpdate(UserReq userReq) {
-        LambdaUpdateWrapper<User> lambdaUpdateWrapper = UserConverter.convertUpdateWrapper(userReq);
-        return update(lambdaUpdateWrapper);
+        UpdateWrapper wrapper = new UpdateWrapper();
+        wrapper = (UpdateWrapper)GenerateUtils.generateUpdateWrapper(userReq, wrapper, "uid");
+        return update(wrapper);
     }
 
     @Override
