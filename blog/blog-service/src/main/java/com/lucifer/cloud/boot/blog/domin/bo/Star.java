@@ -27,7 +27,7 @@ public class Star extends BaseBo implements Serializable {
     private Long user_id;
 
     /**
-     * 被点赞者 id
+     *  收藏图片或博客的 uid
      */
     private Long star_id;
 

@@ -23,12 +23,12 @@ public class ExhibitionDto {
 
     private Integer in_review;
 
-    private List<Integer> likes_ids;
+    private List<String> likes_ids;
 
     private Integer open;
 
     private Integer review_rjection;
 
-    private List<Integer> star_ids;
+    private List<String> star_ids;
 
 }

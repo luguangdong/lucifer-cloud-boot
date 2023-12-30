@@ -32,10 +32,12 @@ public class ExhibitionController {
             @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
             @RequestParam(value = "limit",required = false,defaultValue = "1") Integer limit,
             @RequestParam(value = "type",required = false) Integer type,
-            @RequestParam(value = "sort",required = false) String sort
+            @RequestParam(value = "sort",required = false) String sort,
+            @RequestParam(value = "keywords",required = false) String keywords,
+            @RequestParam(value = "tags",required = false) String tags
     ) {
 
-        return Result.success(exhibitionService.info(request,page,limit,type,sort));
+        return Result.success(exhibitionService.info(request,page,limit,type,sort,keywords,tags));
     }
 
 

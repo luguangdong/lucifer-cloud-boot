@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 public class ExhibitionConverter {
 
-    public static ExhibitionDto converter2Dto(List<Exhibition> exhibitionList, Long count, UserInfo user_info){
+    public static ExhibitionDto converter2Dto(List<Exhibition> exhibitionList, Long count,  UserInfo user_info,List<String> likes_ids,List<String> star_ids){
         List<ExhibitionUser> exhibitionUserList = Optional.ofNullable(exhibitionList).orElse(Lists.newArrayList())
                 .stream()
                 .map(exhibition -> {
@@ -27,7 +27,7 @@ public class ExhibitionConverter {
                 }).collect(Collectors.toList());
 
 
-        return ExhibitionDto.builder().exhibitions(exhibitionUserList).count(count).build();
+        return ExhibitionDto.builder().exhibitions(exhibitionUserList).count(count).likes_ids(likes_ids).star_ids(star_ids).build();
     }
 
     public static Exhibition convertReq2Exhibition(ExhibitionReq exhibitionReq, Long userId) {

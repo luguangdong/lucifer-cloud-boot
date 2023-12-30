@@ -2,6 +2,7 @@ package com.lucifer.cloud.boot.blog.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lucifer.cloud.boot.blog.domin.bo.Likes;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author lucifer
@@ -10,4 +11,5 @@ import com.lucifer.cloud.boot.blog.domin.bo.Likes;
 public interface LikesService extends IService<Likes> {
 
 
+    Boolean like(HttpServletRequest request, String uid, String likesType, String type);
 }

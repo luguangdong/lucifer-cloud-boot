@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 @Getter
 public enum BlogType {
 
-    IMAGE(0L,"image","图片"),
-    BLOG(1L,"blog","博客"),
-    ARTICLE(2L,"article","文章");
+    IMAGE(1,"image","图片"),
+    BLOG(2,"blog","博客"),
+    ARTICLE(3,"article","文章");
 
 
     private static final Map<String, BlogType> CODE_MAPPING = Collections.unmodifiableMap(
@@ -32,13 +32,13 @@ public enum BlogType {
         return Optional.ofNullable(code).map(CODE_MAPPING::get);
     }
 
-    private final Long index;
+    private final Integer index;
 
     private final String code;
 
     private final String name;
 
-    BlogType(@NotNull Long index, @NotNull String code, @NotNull String name) {
+    BlogType(@NotNull Integer index, @NotNull String code, @NotNull String name) {
         this.index = index;
         this.code = code;
         this.name = name;
