@@ -2,9 +2,11 @@ package com.lucifer.cloud.boot.blog.service.impl;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.config.UserSystem;
+import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
 import com.lucifer.cloud.boot.blog.domin.bo.Star;
 import com.lucifer.cloud.boot.blog.domin.dto.star.StarConverter;
 import com.lucifer.cloud.boot.blog.mapper.StarMapper;
+import com.lucifer.cloud.boot.blog.service.ExhibitionService;
 import com.lucifer.cloud.boot.blog.service.StarService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,13 +24,20 @@ public class StarServiceImpl extends ServiceImpl<StarMapper, Star> implements St
     @Resource
     private UserSystem userSystem;
 
+//    @Resource
+//    private ExhibitionService exhibitionService;
+
     @Override
     public Boolean star(HttpServletRequest request, String uid, String star_type, String type) {
         Long userId = userSystem.userId(request);
         Star sr = getOne(Wrappers.lambdaQuery(Star.class).eq(Star::getUser_id, userId).eq(Star::getStar_id, uid));
         if (Objects.isNull(sr)){
             Star star = StarConverter.converterReq2Star(userId,uid, star_type, type);
-            return save(star);
+            boolean save = save(star);
+//            if(save){
+//                exhibitionService.update(Wrappers.lambdaUpdate(Exhibition.class).setSql("`thumbs_up`=`thumbs_up`+1").eq(Exhibition::getUid,uid).eq(Exhibition::getUser_id,userId));
+//            }
+            return save;
         }else {
             return update(Wrappers.lambdaUpdate(Star.class).set(Star::getStar_type,star_type).eq(Star::getUser_id,userId).eq(Star::getStar_id,uid).eq(Star::getType,type));
         }
