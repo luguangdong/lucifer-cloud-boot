@@ -1,5 +1,6 @@
 package com.lucifer.cloud.boot.blog.domin.dto.star;
 
+import com.lucifer.cloud.boot.blog.config.BlogConstant;
 import com.lucifer.cloud.boot.blog.domin.bo.Star;
 import com.lucifer.cloud.boot.blog.util.GenerateUtils;
 
@@ -14,7 +15,7 @@ public class StarConverter {
         star = (Star)GenerateUtils.generateFiledValue(star);
         star.setUser_id(userId);
         star.setStar_id(Long.parseLong(uid));
-        star.setStar_type("1".equals(star_type) ? true:null);
+        star.setStar_type(BlogConstant.STAR_TYPE.equals(star_type) ? true:null);
         star.setType(Integer.valueOf(type));
         return star;
     }

@@ -1,5 +1,6 @@
 package com.lucifer.cloud.boot.blog.domin.dto.likes;
 
+import com.lucifer.cloud.boot.blog.config.BlogConstant;
 import com.lucifer.cloud.boot.blog.domin.bo.Likes;
 import com.lucifer.cloud.boot.blog.util.GenerateUtils;
 
@@ -14,7 +15,7 @@ public class LikesConverter {
         likes = (Likes)GenerateUtils.generateFiledValue(likes);
         likes.setUser_id(userId);
         likes.setLikes_id(Long.parseLong(uid));
-        likes.setLikes_type("1".equals(likesType) ? true:null);
+        likes.setLikes_type(BlogConstant.LIKES_TYPE.equals(likesType) ? true:null);
         likes.setType(Integer.valueOf(type));
         return likes;
     }

@@ -42,7 +42,7 @@ public class StarServiceImpl extends ServiceImpl<StarMapper, Star> implements St
             starRes = update(Wrappers.lambdaUpdate(Star.class).set(Star::getStar_type,star_type).eq(Star::getUser_id,userId).eq(Star::getStar_id,uid).eq(Star::getType,type));
         }
         exhibitionMapper.update(new Exhibition(),Wrappers.lambdaUpdate(Exhibition.class)
-                .setSql(BlogConstant.STAR.equals(star_type) ?  "`thumbs_up`=`thumbs_up`+1":"`thumbs_up`=`thumbs_up`-1").eq(Exhibition::getUid,uid)
+                .setSql(BlogConstant.STAR_TYPE.equals(star_type) ?  "`thumbs_up`=`thumbs_up`+1":"`thumbs_up`=`thumbs_up`-1").eq(Exhibition::getUid,uid)
                 .eq(Exhibition::getUser_id,userId));
 
         return starRes;
