@@ -129,7 +129,7 @@ public class OSSUtil {
             String fileName = path +"/"+file_name;
             InputStream inputStream = file.getInputStream();
             ObjectMetadata objectMetadata = new ObjectMetadata();
-            objectMetadata.setObjectAcl(CannedAccessControlList.PublicRead);
+            objectMetadata.setObjectAcl(CannedAccessControlList.Private);
             objectMetadata.setContentLength(inputStream.available());
             objectMetadata.setCacheControl("no-cache");
             objectMetadata.setHeader("Pragma", "no-cache");
