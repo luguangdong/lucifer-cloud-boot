@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author lucifer
@@ -28,6 +29,12 @@ import java.util.Map;
 @Slf4j
 @Configuration
 public class OSSUtil {
+
+    /**
+     * 公网域名通过nginx代理oss内网域名
+     */
+    @Value("${oss.aliyun.endpointProxy}")
+    private String endpointProxy;
 
     @Value("${oss.aliyun.endpoint}")
     private String endpoint;
@@ -145,6 +152,41 @@ public class OSSUtil {
         } catch (ClientException ce) {
             log.error("客户端Client删除图片文件={}失败。Error Message={}",
                     file_name,ce.getMessage()
+            );
+        }  finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * 使用签名URL进行临时授权
+     *  填写objectName完整路径，例如exampledir/exampleobject.txt。objectName完整路径中不能包含Bucket名称。
+     * @param objectName
+     * @return
+     */
+    public  String generateSignedUrl(String objectName){
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+        try {
+            // 设置签名URL过期时间，单位为毫秒。本示例以设置过期时间为1小时为例。
+            Date expiration = new Date(new Date().getTime() + 3600 * 1000L);
+            // 生成以GET方法访问的签名URL，访客可以直接通过浏览器访问相关内容。
+            URL url = ossClient.generatePresignedUrl(bucket, objectName, expiration);
+            if(Objects.isNull(url)){
+                String host = "https://"+url.getHost();
+                String proxyUrl = url.toString().replace(host, endpointProxy);
+                return proxyUrl;
+            }
+        } catch (OSSException oe) {
+            log.error("生成以GET方法访问的签名URL的文件名={}失败。Host ID={},Request ID={},Error Code={},Error Message={}",
+                    objectName,oe.getHostId(),oe.getRequestId(),oe.getErrorCode(),oe.getMessage()
+            );
+        } catch (ClientException ce) {
+            log.error("生成以GET方法访问的签名URL的文件名={}失败。Error Message={}",
+                    objectName,ce.getMessage()
             );
         }  finally {
             if (ossClient != null) {
