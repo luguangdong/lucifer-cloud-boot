@@ -88,7 +88,7 @@ public class ExhibitionUser {
     private String palette;
 
 
-    private Long updated;
+    private Long created;
 
     private String uid;
 
