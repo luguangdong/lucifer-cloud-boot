@@ -1,6 +1,6 @@
 package com.lucifer.cloud.boot.blog.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
@@ -16,12 +16,12 @@ import com.lucifer.cloud.boot.blog.mapper.FollowMapper;
 import com.lucifer.cloud.boot.blog.mapper.UserMapper;
 import com.lucifer.cloud.boot.blog.service.UserService;
 import com.lucifer.cloud.boot.blog.config.UserSystem;
-import com.lucifer.cloud.boot.blog.util.GenerateUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author lucifer
@@ -52,9 +52,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Boolean userUpdate(UserReq userReq) {
-        UpdateWrapper wrapper = new UpdateWrapper();
-        wrapper = (UpdateWrapper)GenerateUtils.generateUpdateWrapper(userReq, wrapper, "uid");
-        return update(wrapper);
+
+//        UpdateWrapper wrapper = new UpdateWrapper();
+//        wrapper = (UpdateWrapper)GenerateUtils.generateUpdateWrapper(userReq, wrapper, "uid");
+//        return update(wrapper);
+        return update(Wrappers.lambdaUpdate(User.class)
+                .set(StringUtils.isNotBlank(userReq.getAvatar_url()),User::getAvatar_url,userReq.getAvatar_url())
+                .set(Objects.nonNull(userReq.getGender()),User::getGender,userReq.getGender())
+                .set(StringUtils.isNotBlank(userReq.getGit_hub()),User::getGit_hub,userReq.getGit_hub())
+                .set(StringUtils.isNotBlank(userReq.getMotto()),User::getMotto,userReq.getMotto())
+                .set(StringUtils.isNotBlank(userReq.getQq()),User::getQq,userReq.getQq())
+                .set(Objects.nonNull(userReq.getTel()),User::getTel,userReq.getTel())
+                .set(StringUtils.isNotBlank(userReq.getUsername()),User::getUsername,userReq.getUsername())
+                .set(StringUtils.isNotBlank(userReq.getWechat()),User::getWechat,userReq.getWechat())
+                .set(StringUtils.isNotBlank(userReq.getBackground_image()),User::getBackground_image,userReq.getBackground_image())
+                .eq(User::getUid,userReq.getUid())
+        );
+
+
     }
 
     @Override

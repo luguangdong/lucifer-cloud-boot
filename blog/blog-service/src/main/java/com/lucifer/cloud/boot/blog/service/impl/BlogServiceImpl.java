@@ -20,6 +20,7 @@ import com.lucifer.cloud.boot.blog.service.BlogService;
 import com.lucifer.cloud.boot.blog.config.UserSystem;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,12 +43,17 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     private TagMapper tagMapper;
 
     @Override
-    public BlogInfoDto blogInfo(HttpServletRequest request, Long _t, Integer page, Integer limit) {
+    public BlogInfoDto blogInfo(HttpServletRequest request, Long _t,String uid, Integer page, Integer limit) {
         Long userId = userSystem.userId(request);
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
         Page<Blog> rowPage = new Page<>(page, limit);
-        Page<Blog> blogPage = this.baseMapper.selectPage(rowPage, Wrappers.lambdaQuery(Blog.class).eq(Blog::getUser_id, userId));
+
+        Page<Blog> blogPage = this.baseMapper.selectPage(rowPage, Wrappers.lambdaQuery(Blog.class)
+                .eq(Blog::getUser_id, userId)
+                .eq(StringUtils.isNotBlank(uid),Blog::getUid,uid));
+
+
         List<Blog> blogList = blogPage.getRecords();
         long count = blogPage.getTotal();
         List<BlogInfo> blogInfoList = BlogConverter.convertList2InfoList(blogList, user_info);

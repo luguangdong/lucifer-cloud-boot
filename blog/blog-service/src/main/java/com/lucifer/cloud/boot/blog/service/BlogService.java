@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface BlogService extends IService<Blog> {
 
 
-    BlogInfoDto blogInfo(HttpServletRequest request, Long _t, Integer page, Integer limit);
+    BlogInfoDto blogInfo(HttpServletRequest request, Long _t,String uid, Integer page, Integer limit);
 
 
     Boolean blogCreate(HttpServletRequest request, BlogReq blogReq);
