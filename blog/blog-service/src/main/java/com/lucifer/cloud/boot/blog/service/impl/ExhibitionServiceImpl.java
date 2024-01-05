@@ -1,5 +1,6 @@
 package com.lucifer.cloud.boot.blog.service.impl;
 import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -21,6 +22,7 @@ import com.lucifer.cloud.boot.blog.service.LikesService;
 import com.lucifer.cloud.boot.blog.service.StarService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +55,13 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
         Page<Exhibition> rowPage = new Page<>(page, limit);
-        Page<Exhibition> exhibitionPage = this.baseMapper.selectPage(rowPage, Wrappers.lambdaQuery(Exhibition.class).eq(Exhibition::getUser_id, userId).like(Exhibition::getTitle,keywords));
+        QueryWrapper<Exhibition> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId);
+        if(StringUtils.isNotBlank(keywords)){
+            queryWrapper.like("title",keywords);
+        }
+        Page<Exhibition> exhibitionPage = this.baseMapper.selectPage(rowPage, queryWrapper);
+
         List<Exhibition> exhibitionList = exhibitionPage.getRecords();
         long count = exhibitionPage.getTotal();
         List<Likes> likesList = likesService.list(Wrappers.lambdaQuery(Likes.class)
