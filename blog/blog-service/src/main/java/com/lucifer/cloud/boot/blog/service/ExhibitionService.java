@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface ExhibitionService extends IService<Exhibition> {
 
 
-    ExhibitionDto info(HttpServletRequest request, Integer page, Integer limit, Integer type, String sort,String keywords,String tags);
+    ExhibitionDto info(HttpServletRequest request, Integer page, Integer limit, Integer type, String sort,String keywords,String tags,String uid);
 
 
     Boolean create(HttpServletRequest request, ExhibitionReq exhibitionReq);

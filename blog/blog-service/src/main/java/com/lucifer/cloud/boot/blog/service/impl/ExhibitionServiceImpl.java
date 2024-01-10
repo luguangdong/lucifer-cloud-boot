@@ -51,7 +51,7 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
 
 
     @Override
-    public ExhibitionDto info(HttpServletRequest request, Integer page, Integer limit, Integer type, String sort,String keywords,String tags) {
+    public ExhibitionDto info(HttpServletRequest request, Integer page, Integer limit, Integer type, String sort,String keywords,String tags,String uid) {
         Long userId = userSystem.userId(request);
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
@@ -59,6 +59,7 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
         Page<Exhibition> exhibitionPage = this.baseMapper.selectPage(rowPage,Wrappers.lambdaQuery(Exhibition.class)
                 .eq(Exhibition::getUser_id,userId)
                 .eq(StringUtils.isNotBlank(keywords),Exhibition::getTitle,keywords)
+                .eq(StringUtils.isNotBlank(uid),Exhibition::getUid,uid)
         );
 
         List<Exhibition> exhibitionList = exhibitionPage.getRecords();

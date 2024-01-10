@@ -34,10 +34,11 @@ public class ExhibitionController {
             @RequestParam(value = "type",required = false) Integer type,
             @RequestParam(value = "sort",required = false) String sort,
             @RequestParam(value = "keywords",required = false) String keywords,
-            @RequestParam(value = "tags",required = false) String tags
+            @RequestParam(value = "tags",required = false) String tags,
+            @RequestParam(value = "uids",required = false) String uid
     ) {
 
-        return Result.success(exhibitionService.info(request,page,limit,type,sort,keywords,tags));
+        return Result.success(exhibitionService.info(request,page,limit,type,sort,keywords,tags,uid));
     }
 
 
