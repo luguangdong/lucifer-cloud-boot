@@ -3,7 +3,6 @@ import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lucifer.cloud.boot.blog.config.BlogConstant;
 import com.lucifer.cloud.boot.blog.config.BlogType;
 import com.lucifer.cloud.boot.blog.config.UserSystem;
 import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
@@ -56,10 +55,13 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
         Page<Exhibition> rowPage = new Page<>(page, limit);
+
+
         Page<Exhibition> exhibitionPage = this.baseMapper.selectPage(rowPage,Wrappers.lambdaQuery(Exhibition.class)
                 .eq(Exhibition::getUser_id,userId)
                 .eq(StringUtils.isNotBlank(keywords),Exhibition::getTitle,keywords)
                 .eq(StringUtils.isNotBlank(uid),Exhibition::getUid,uid)
+                .last(StringUtils.isNotBlank(sort),"order by "+ sort)
         );
 
         List<Exhibition> exhibitionList = exhibitionPage.getRecords();
