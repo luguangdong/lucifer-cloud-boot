@@ -26,11 +26,12 @@ public class UploadConverter {
     }
 
 
-    public static Map convertImgRes2Res(Map<String, String> imgResult){
+    public static Map convertImgRes2Res(Map<String, String> imgResult,Upload upload){
         Map<String, Object> map = Maps.newHashMap();
         map.put("url",imgResult.get("url"));
         map.put("key",imgResult.get("fileName"));
-        map.put("file_id",imgResult.get("url"));
+        map.put("cos_file_id",imgResult.get("url"));
+        map.put("file_id",String.valueOf(upload.getId()));
         return map;
     }
 

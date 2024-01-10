@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
 import com.lucifer.cloud.boot.blog.domin.bo.Tag;
+import com.lucifer.cloud.boot.blog.domin.bo.Upload;
 import com.lucifer.cloud.boot.blog.domin.bo.User;
 import com.lucifer.cloud.boot.blog.domin.dto.blog.BlogConverter;
 import com.lucifer.cloud.boot.blog.domin.dto.blog.BlogInfo;
@@ -15,6 +16,7 @@ import com.lucifer.cloud.boot.blog.domin.dto.user.UserConverter;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserInfo;
 import com.lucifer.cloud.boot.blog.mapper.BlogMapper;
 import com.lucifer.cloud.boot.blog.mapper.TagMapper;
+import com.lucifer.cloud.boot.blog.mapper.UploadMapper;
 import com.lucifer.cloud.boot.blog.mapper.UserMapper;
 import com.lucifer.cloud.boot.blog.service.BlogService;
 import com.lucifer.cloud.boot.blog.config.UserSystem;
@@ -42,6 +44,9 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     @Resource
     private TagMapper tagMapper;
 
+    @Resource
+    private UploadMapper uploadMapper;
+
     @Override
     public BlogInfoDto blogInfo(HttpServletRequest request, Long _t,String uid, Integer page, Integer limit) {
         Long userId = userSystem.userId(request);
@@ -67,6 +72,9 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
         Blog blog = BlogConverter.convertReq2blog(blogReq,userId);
         Tag tag = TagConverter.convertBlogReq2Tag(blogReq,userId);
         tagMapper.insert(tag);
+        uploadMapper.update(new Upload(),Wrappers.lambdaUpdate(Upload.class)
+                .set(Upload::getBlog_id,blog.getUid())
+                .eq(Upload::getId,blogReq.getFile_id()));
         return save(blog);
     }
 
@@ -84,10 +92,13 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     @Override
     public Boolean blogDelete(HttpServletRequest request, String uid) {
         Long userId = userSystem.userId(request);
-        return remove(Wrappers.lambdaQuery(Blog.class)
-                .eq(Blog::getUid,Long.parseLong(uid))
-                .eq(Blog::getUser_id,userId)
-        );
+        boolean remove = remove(Wrappers.lambdaQuery(Blog.class)
+                .eq(Blog::getUid, Long.parseLong(uid))
+                .eq(Blog::getUser_id, userId));
+        if(remove){
+            uploadMapper.delete(Wrappers.lambdaQuery(Upload.class).eq(Upload::getBlog_id,uid).eq(Upload::getUser_id,userId));
+        }
+        return remove;
     }
 
 }

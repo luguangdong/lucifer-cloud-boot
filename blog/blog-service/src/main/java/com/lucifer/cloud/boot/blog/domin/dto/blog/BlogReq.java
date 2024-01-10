@@ -20,4 +20,9 @@ public class BlogReq {
     private String cover;
 
     private String tags;
+
+    /**
+     * 博客背景图片ID
+     */
+    private String file_id;
 }

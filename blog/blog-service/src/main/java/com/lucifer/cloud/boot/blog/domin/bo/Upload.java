@@ -52,4 +52,10 @@ public class Upload extends BaseBo implements Serializable {
      * 用户id
      */
     private Long user_id;
+
+
+    /**
+     * 使用这个图片的博客ID
+     */
+    private Long blog_id;
 }

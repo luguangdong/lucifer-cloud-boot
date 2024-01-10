@@ -36,7 +36,7 @@ public class UploadServiceImpl extends ServiceImpl<UploadMapper, Upload> impleme
         Upload upload = UploadConverter.convertReq2Upload(userId, file_name, path, file, imgResult);
         boolean save = save(upload);
         if (save){
-           return UploadConverter.convertImgRes2Res(imgResult);
+           return UploadConverter.convertImgRes2Res(imgResult,upload);
         }
         return Maps.newHashMap();
     }
