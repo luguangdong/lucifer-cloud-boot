@@ -11,6 +11,7 @@ import com.lucifer.cloud.boot.blog.mapper.TagMapper;
 import com.lucifer.cloud.boot.blog.service.TagService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,9 +30,13 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
     private UserSystem userSystem;
 
     @Override
-    public TagDto info(HttpServletRequest request, String type) {
+    public TagDto info(HttpServletRequest request, String type,String uid) {
         Long userId = userSystem.userId(request);
-        List<Tag> tagList = list(Wrappers.lambdaQuery(Tag.class).eq(Tag::getUser_id, userId).eq(Tag::getType, type));
+        List<Tag> tagList = list(Wrappers.lambdaQuery(Tag.class)
+                .eq(Tag::getUser_id, userId)
+                .eq(Tag::getType, type)
+                .eq(StringUtils.isNotBlank(uid),Tag::getUid,uid)
+        );
         List<TagInfo> tagInfoList = Optional.ofNullable(tagList).orElse(Lists.newArrayList())
                 .stream()
                 .map(tag -> {

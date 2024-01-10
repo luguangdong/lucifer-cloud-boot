@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * @date 2023/12/21 15:23
  */
 public interface TagService extends IService<Tag> {
-    TagDto info(HttpServletRequest request, String type);
+    TagDto info(HttpServletRequest request, String type,String uid);
 
     Boolean create(HttpServletRequest request, String type, String name);
 }

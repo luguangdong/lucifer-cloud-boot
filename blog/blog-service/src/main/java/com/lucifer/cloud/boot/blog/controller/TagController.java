@@ -26,9 +26,10 @@ public class TagController {
 
     @GetMapping("info")
     public Result<TagDto> info(
-            @RequestParam(value = "type",required = false) String type
+            @RequestParam(value = "type",required = false) String type,
+            @RequestParam(value = "uids",required = false) String uid
     ) {
-        return Result.success(tagService.info(request,type));
+        return Result.success(tagService.info(request,type,uid));
     }
 
 
