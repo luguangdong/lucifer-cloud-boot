@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -74,6 +75,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
         tagMapper.insert(tag);
         uploadMapper.update(new Upload(),Wrappers.lambdaUpdate(Upload.class)
                 .set(Upload::getBlog_id,blog.getUid())
+                .set(Upload::getUpdated_at,LocalDateTime.now())
                 .eq(Upload::getId,blogReq.getFile_id()));
         return save(blog);
     }
