@@ -59,8 +59,8 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
 
         Page<Exhibition> exhibitionPage = this.baseMapper.selectPage(rowPage,Wrappers.lambdaQuery(Exhibition.class)
                 .eq(Exhibition::getUser_id,userId)
-                .eq(StringUtils.isNotBlank(keywords),Exhibition::getTitle,keywords)
                 .eq(StringUtils.isNotBlank(uid),Exhibition::getUid,uid)
+                .like(StringUtils.isNotBlank(keywords),Exhibition::getTitle,keywords)
                 .last(StringUtils.isNotBlank(sort),"order by "+ sort)
         );
 
