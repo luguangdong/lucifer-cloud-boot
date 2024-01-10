@@ -55,4 +55,11 @@ public class ExhibitionController {
         return Result.success(exhibitionService.delete(request,uid));
     }
 
+    @GetMapping("download")
+    public Result<Boolean> download(
+            @RequestParam(value = "uid",required = false)    String uid
+    ) {
+        return Result.success(exhibitionService.download(request,uid));
+    }
+
 }

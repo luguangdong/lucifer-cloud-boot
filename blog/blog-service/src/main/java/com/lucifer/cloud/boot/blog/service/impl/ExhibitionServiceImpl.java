@@ -3,6 +3,7 @@ import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lucifer.cloud.boot.blog.config.BlogConstant;
 import com.lucifer.cloud.boot.blog.config.BlogType;
 import com.lucifer.cloud.boot.blog.config.UserSystem;
 import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
@@ -24,6 +25,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -101,5 +103,16 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
             starService.remove(Wrappers.lambdaQuery(Star.class).eq(Star::getUser_id,userId).eq(Star::getStar_id,uid));
         }
         return remove;
+    }
+
+    @Override
+    public Boolean download(HttpServletRequest request, String uid) {
+        Long userId = userSystem.userId(request);
+        return update(Wrappers.lambdaUpdate(Exhibition.class)
+                .set(Exhibition::getCreated_at, LocalDateTime.now())
+                .setSql("`download`=`download`+1")
+                .eq(Exhibition::getUid,uid)
+                .eq(Exhibition::getUser_id,userId)
+        );
     }
 }
