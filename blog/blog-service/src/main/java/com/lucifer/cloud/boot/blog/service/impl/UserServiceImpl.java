@@ -132,7 +132,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         );
 
         List<Follow> followList = followService.list(Wrappers.lambdaQuery(Follow.class)
-                .eq(Follow::getFollow_user_id, userId)
+                .eq(Follow::getUser_id, userId)
                 .eq(Follow::getFollow_type,Boolean.TRUE)
         );
 

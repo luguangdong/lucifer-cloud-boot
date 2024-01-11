@@ -39,6 +39,10 @@ public class UserSystem {
        return user(request).getId();
     }
 
+    public Long uid(HttpServletRequest request){
+        return user(request).getUid();
+    }
+
     public User user(HttpServletRequest request){
 
         String token = token(request);
