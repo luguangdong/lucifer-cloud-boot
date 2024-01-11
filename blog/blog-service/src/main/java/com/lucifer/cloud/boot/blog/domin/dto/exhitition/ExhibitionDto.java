@@ -15,19 +15,23 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExhibitionDto {
 
-    private Integer approved;
-
     private Long count;
 
     private List<ExhibitionUser> exhibitions;
 
-    private Integer in_review;
+    // 审核中
+    private Long in_review;
+
+    // 审核通过
+    private Long approved;
+
+    // 未通过审核
+    private Long review_rjection;
+
+    // 公开
+    private Long open;
 
     private List<String> likes_ids;
-
-    private Integer open;
-
-    private Integer review_rjection;
 
     private List<String> star_ids;
 

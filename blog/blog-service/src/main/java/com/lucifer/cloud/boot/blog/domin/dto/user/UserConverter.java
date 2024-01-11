@@ -5,9 +5,14 @@ import cn.hutool.json.JSONObject;
 import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
+import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
 import com.lucifer.cloud.boot.blog.domin.bo.Follow;
+import com.lucifer.cloud.boot.blog.domin.bo.Likes;
+import com.lucifer.cloud.boot.blog.domin.bo.Star;
 import com.lucifer.cloud.boot.blog.domin.bo.User;
+import com.lucifer.cloud.boot.blog.domin.dto.exhitition.ExhibitionUserDetail;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -15,6 +20,7 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author lucifer
@@ -57,6 +63,40 @@ public class UserConverter {
         detail.setFollows(follows);
         detail.setThumbs_up(thumbs_up);
         return detail;
+    }
+
+
+    public static UserDetailDto convert2UserDetailDto(UserInfo user_info, List<Exhibition> exhibitionList,long count, List<Likes> likesList, List<Star> starList, List<Follow> followList){
+
+        List<ExhibitionUserDetail> exhibition = Optional.ofNullable(exhibitionList).orElse(Lists.newArrayList())
+                .stream()
+                .map(follow -> {
+                    ExhibitionUserDetail exhibitionUserDetail = new ExhibitionUserDetail();
+                    BeanUtils.copyProperties(follow, exhibitionUserDetail);
+                    return exhibitionUserDetail;
+                }).collect(Collectors.toList());
+
+        long download = Optional.ofNullable(exhibitionList).orElse(Lists.newArrayList())
+                .stream()
+                .mapToLong(Exhibition::getDownload)
+                .sum();
+
+        List<String> follow_ids = Optional.ofNullable(followList).orElse(Lists.newArrayList())
+                .stream().map(Follow::getUser_id)
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+
+        return UserDetailDto.builder()
+                .count(count)
+                .exhibition(exhibition)
+                .download(download)
+                .follow(Long.valueOf(followList.size()))
+                .follow_ids(follow_ids)
+                .like(Long.valueOf(likesList.size()))
+                .star(Long.valueOf(starList.size()))
+                .upload(count)
+                .user_info(user_info)
+                .build();
     }
 
 

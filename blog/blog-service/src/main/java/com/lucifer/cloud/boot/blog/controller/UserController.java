@@ -1,4 +1,5 @@
 package com.lucifer.cloud.boot.blog.controller;
+import com.lucifer.cloud.boot.blog.domin.dto.user.UserDetailDto;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserInfoDto;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserReq;
 import com.lucifer.cloud.boot.blog.service.UserService;
@@ -46,5 +47,17 @@ public class UserController {
             @RequestBody Map map) {
         String password = (String)map.get("password");
         return Result.success(userService.passwordUpdate(request,password));
+    }
+
+
+    @GetMapping("detail")
+    public Result<UserDetailDto> userDetail(
+            @RequestParam(value = "uid",required = false) String uid,
+            @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
+            @RequestParam(value = "limit",required = false,defaultValue = "1") Integer limit,
+            @RequestParam(value = "type",required = false) Integer type
+    ) {
+
+        return Result.success(userService.userDetail(request,uid,page,limit,type));
     }
 }

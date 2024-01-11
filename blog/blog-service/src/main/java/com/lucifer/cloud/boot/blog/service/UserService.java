@@ -1,6 +1,7 @@
 package com.lucifer.cloud.boot.blog.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lucifer.cloud.boot.blog.domin.bo.User;
+import com.lucifer.cloud.boot.blog.domin.dto.user.UserDetailDto;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserInfoDto;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserReq;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,4 +18,6 @@ public interface UserService extends IService<User> {
 
 
     Boolean passwordUpdate(HttpServletRequest request,String password);
+
+    UserDetailDto userDetail(HttpServletRequest request, String uid, Integer page, Integer limit, Integer type);
 }
