@@ -13,14 +13,14 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AdminStatDto {
 
-    private Integer article_count;
+    private Long article_count;
 
-    private Integer blog_count;
+    private Long blog_count;
 
-    private Integer image_count;
+    private Long image_count;
 
-    private Integer image_download_count;
-    private Integer user_count;
+    private Long image_download_count;
+    private Long user_count;
 
 
 }
