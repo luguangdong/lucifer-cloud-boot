@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -54,18 +55,27 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
         Long userId = userSystem.userId(request);
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
-        Page<Exhibition> rowPage = new Page<>(page, limit);
 
-
-        Page<Exhibition> exhibitionPage = this.baseMapper.selectPage(rowPage,Wrappers.lambdaQuery(Exhibition.class)
-                .eq(Exhibition::getUser_id,userId)
-                .eq(StringUtils.isNotBlank(uid),Exhibition::getUid,uid)
-                .like(StringUtils.isNotBlank(keywords),Exhibition::getTitle,keywords)
-                .last(StringUtils.isNotBlank(sort),"order by "+ sort)
-        );
-
-        List<Exhibition> exhibitionList = exhibitionPage.getRecords();
-        long count = exhibitionPage.getTotal();
+        List<Exhibition> exhibitionList = Lists.newArrayList();
+        Long count = 0L;
+        if(Objects.isNull(page) && Objects.isNull(limit)){
+            exhibitionList = list(Wrappers.lambdaQuery(Exhibition.class)
+                    .eq(Exhibition::getUser_id, userId)
+                    .eq(StringUtils.isNotBlank(uid), Exhibition::getUid, uid)
+                    .like(StringUtils.isNotBlank(keywords), Exhibition::getTitle, keywords)
+                    .last(StringUtils.isNotBlank(sort), "order by " + sort));
+            count = Long.valueOf(exhibitionList.size());
+        }else {
+            Page<Exhibition> rowPage = new Page<>(page, limit);
+            Page<Exhibition> exhibitionPage = this.baseMapper.selectPage(rowPage,Wrappers.lambdaQuery(Exhibition.class)
+                    .eq(Exhibition::getUser_id,userId)
+                    .eq(StringUtils.isNotBlank(uid),Exhibition::getUid,uid)
+                    .like(StringUtils.isNotBlank(keywords),Exhibition::getTitle,keywords)
+                    .last(StringUtils.isNotBlank(sort),"order by "+ sort)
+            );
+            exhibitionList = exhibitionPage.getRecords();
+            count = exhibitionPage.getTotal();
+        }
         List<Likes> likesList = likesService.list(Wrappers.lambdaQuery(Likes.class)
                 .eq(Likes::getUser_id, userId)
                 .eq(Likes::getType, BlogType.IMAGE.getIndex())

@@ -29,8 +29,8 @@ public class ExhibitionController {
 
     @GetMapping("info")
     public Result<ExhibitionDto> Info(
-            @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
-            @RequestParam(value = "limit",required = false,defaultValue = "1") Integer limit,
+            @RequestParam(value = "page",required = false) Integer page,
+            @RequestParam(value = "limit",required = false) Integer limit,
             @RequestParam(value = "type",required = false) Integer type,
             @RequestParam(value = "sort",required = false) String sort,
             @RequestParam(value = "keywords",required = false) String keywords,
