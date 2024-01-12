@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.config.BlogType;
+import com.lucifer.cloud.boot.blog.config.ImageStatusType;
 import com.lucifer.cloud.boot.blog.domin.bo.Blog;
 import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
 import com.lucifer.cloud.boot.blog.domin.bo.Follow;
@@ -112,18 +113,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long userId = userSystem.userId(request);
         User user = getById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
-        Page<Exhibition> rowPage = new Page<>(page, limit);
-        Page<Exhibition> exhibitionPage = exhibitionMapper.selectPage(rowPage,Wrappers.lambdaQuery(Exhibition.class)
-                .eq(Exhibition::getUser_id,userId)
-                //.eq(StringUtils.isNotBlank(uid),Exhibition::getUid,uid)
-        );
-        List<Exhibition> exhibitionList = exhibitionPage.getRecords();
-        long count = exhibitionPage.getTotal();
+
         List<Likes> likesList = likesService.list(Wrappers.lambdaQuery(Likes.class)
                 .eq(Likes::getUser_id, userId)
                 .eq(Likes::getType, BlogType.IMAGE.getIndex())
                 .eq(Likes::getLikes_type,Boolean.TRUE)
         );
+
+        List<String> likes_ids = Optional.ofNullable(likesList).orElse(Lists.newArrayList())
+                .stream().map(Likes::getLikes_id)
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+
+        Page<Exhibition> rowPage = new Page<>(page, limit);
+        Page<Exhibition> exhibitionPage = exhibitionMapper.selectPage(rowPage,Wrappers.lambdaQuery(Exhibition.class)
+                .eq(Exhibition::getUser_id,userId)
+                        .eq(ImageStatusType.UPLOAD.getIndex() == type || ImageStatusType.OPEN.getIndex() == type,
+                                Exhibition::getStatus,type)
+                        .in(ImageStatusType.HEART.getIndex() == type,Exhibition::getUid,likes_ids)
+                //.eq(StringUtils.isNotBlank(uid),Exhibition::getUid,uid)
+        );
+        List<Exhibition> exhibitionList = exhibitionPage.getRecords();
+        long count = exhibitionPage.getTotal();
+
 
         List<Star> starList = starService.list(Wrappers.lambdaQuery(Star.class)
                 .eq(Star::getUser_id, userId)
