@@ -128,4 +128,14 @@ public class ExhibitionServiceImpl extends ServiceImpl<ExhibitionMapper, Exhibit
                 .eq(Exhibition::getUser_id,userId)
         );
     }
+
+    @Override
+    public Boolean approval(HttpServletRequest request, String uid, Integer status, String reason) {
+       return update(Wrappers.lambdaUpdate(Exhibition.class)
+                .set(Exhibition::getUpdated_at, LocalDateTime.now())
+                .set(Exhibition::getStatus,status)
+                .set(StringUtils.isNotBlank(reason),Exhibition::getReject_res,reason)
+                .eq(Exhibition::getUid,uid)
+        );
+    }
 }

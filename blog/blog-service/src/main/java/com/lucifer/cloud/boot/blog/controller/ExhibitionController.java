@@ -63,4 +63,14 @@ public class ExhibitionController {
         return Result.success(exhibitionService.download(request,uid));
     }
 
+
+    @PostMapping("approval")
+    public Result<Boolean> approval(
+            @RequestParam(value = "uid",required = false)    String uid,
+            @RequestParam(value = "status",required = false)    Integer status,
+            @RequestParam(value = "reason",required = false)    String reason
+    ) {
+        return Result.success(exhibitionService.approval(request,uid,status,reason));
+    }
+
 }

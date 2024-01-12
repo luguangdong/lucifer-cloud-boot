@@ -20,4 +20,6 @@ public interface ExhibitionService extends IService<Exhibition> {
     Boolean delete(HttpServletRequest request, String uid);
 
     Boolean download(HttpServletRequest request, String uid);
+
+    Boolean approval(HttpServletRequest request, String uid, Integer status, String reason);
 }
