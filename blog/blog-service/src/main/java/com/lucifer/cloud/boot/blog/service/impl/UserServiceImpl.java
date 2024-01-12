@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lucifer.cloud.boot.blog.config.BlogType;
 import com.lucifer.cloud.boot.blog.config.ImageStatusType;
-import com.lucifer.cloud.boot.blog.domin.bo.Blog;
 import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
 import com.lucifer.cloud.boot.blog.domin.bo.Follow;
 import com.lucifer.cloud.boot.blog.domin.bo.Likes;
@@ -19,10 +18,9 @@ import com.lucifer.cloud.boot.blog.domin.dto.user.UserDetailDto;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserInfo;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserInfoDto;
 import com.lucifer.cloud.boot.blog.domin.dto.user.UserReq;
-import com.lucifer.cloud.boot.blog.mapper.BlogMapper;
 import com.lucifer.cloud.boot.blog.mapper.ExhibitionMapper;
-import com.lucifer.cloud.boot.blog.mapper.FollowMapper;
 import com.lucifer.cloud.boot.blog.mapper.UserMapper;
+import com.lucifer.cloud.boot.blog.service.ExhibitionService;
 import com.lucifer.cloud.boot.blog.service.FollowService;
 import com.lucifer.cloud.boot.blog.service.LikesService;
 import com.lucifer.cloud.boot.blog.service.StarService;
@@ -46,10 +44,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
-    private BlogMapper blogMapper;
-
-    @Resource
-    private FollowMapper followMapper;
+    private ExhibitionService exhibitionService;
 
     @Resource
     private ExhibitionMapper exhibitionMapper;
@@ -70,9 +65,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long userId = userSystem.userId(request);
         User user = getById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
-        List<Blog> blogList = blogMapper.selectList(Wrappers.lambdaQuery(Blog.class).eq(Blog::getUser_id, userId));
-        List<Follow> followList = followMapper.selectList(Wrappers.lambdaQuery(Follow.class).eq(Follow::getFollow_user_id, userId).eq(Follow::getFollow_type, true));
-        UserDetail user_detail = UserConverter.convertBlog2Detail(blogList, followList);
+
+        List<Exhibition> exhibitionList = exhibitionService.list(Wrappers.lambdaQuery(Exhibition.class)
+                .eq(Exhibition::getUser_id, userId));
+
+
+        List<Follow> followList = followService.list(Wrappers.lambdaQuery(Follow.class)
+                .eq(Follow::getUser_id, userId)
+                .eq(Follow::getFollow_type,Boolean.TRUE)
+        );
+
+        List<Likes> likesList = likesService.list(Wrappers.lambdaQuery(Likes.class)
+                .eq(Likes::getUser_id, userId)
+                .eq(Likes::getType, BlogType.IMAGE.getIndex())
+                .eq(Likes::getLikes_type,Boolean.TRUE)
+        );
+        List<Star> starList = starService.list(Wrappers.lambdaQuery(Star.class)
+                .eq(Star::getUser_id, userId)
+                .eq(Star::getType, BlogType.IMAGE.getIndex())
+                .eq(Star::getStar_type,Boolean.TRUE)
+        );
+        UserDetail user_detail = UserConverter.convertBlog2Detail(exhibitionList,followList,likesList,starList);
         UserInfoDto userInfoDto = UserInfoDto.builder().user_info(user_info).user_detail(user_detail).build();
         return userInfoDto;
     }

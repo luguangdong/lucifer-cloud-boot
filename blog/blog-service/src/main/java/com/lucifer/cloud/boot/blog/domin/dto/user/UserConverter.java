@@ -4,7 +4,6 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.json.JSONObject;
 import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.lucifer.cloud.boot.blog.domin.bo.Blog;
 import com.lucifer.cloud.boot.blog.domin.bo.Exhibition;
 import com.lucifer.cloud.boot.blog.domin.bo.Follow;
 import com.lucifer.cloud.boot.blog.domin.bo.Likes;
@@ -50,13 +49,11 @@ public class UserConverter {
     }
 
 
-    public static UserDetail convertBlog2Detail(List<Blog> blogList, List<Follow> followList){
+    public static UserDetail convertBlog2Detail(List<Exhibition> exhibitionList,List<Follow> followList,List<Likes> likesList,List<Star> starList){
         UserDetail detail = new UserDetail();
-        int publish = blogList.size();
-        int likes = Optional.ofNullable(blogList).orElse(Lists.newArrayList())
-                .stream().mapToInt(Blog::getCollection).sum();
-        int thumbs_up = Optional.ofNullable(blogList).orElse(Lists.newArrayList())
-                .stream().mapToInt(Blog::getThumbs_up).sum();
+        int publish = exhibitionList.size();
+        int likes = likesList.size();
+        int thumbs_up = starList.size();
         int follows = followList.size();
         detail.setPublish(publish);
         detail.setLikes(likes);
