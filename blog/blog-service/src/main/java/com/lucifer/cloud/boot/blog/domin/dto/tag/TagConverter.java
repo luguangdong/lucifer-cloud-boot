@@ -20,11 +20,11 @@ public class TagConverter {
     }
 
 
-    public static Tag convertTagReq2Tag(String name,Long userId){
+    public static Tag convertTagReq2Tag(String name,Long userId,String type){
         Tag tag = new Tag();
         tag = (Tag) GenerateUtils.generateFiledValue(tag);
         tag.setName(name);
-        tag.setType(BlogType.IMAGE.getCode());
+        tag.setType(type);
         tag.setUser_id(userId);
         return tag;
     }

@@ -48,7 +48,7 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
     @Override
     public Boolean create(HttpServletRequest request, String type, String name) {
         Long userId = userSystem.userId(request);
-        Tag tag = TagConverter.convertTagReq2Tag(name, userId);
+        Tag tag = TagConverter.convertTagReq2Tag(name, userId,type);
         return save(tag);
     }
 }
