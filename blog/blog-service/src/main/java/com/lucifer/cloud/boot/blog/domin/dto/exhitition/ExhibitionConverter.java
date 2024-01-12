@@ -59,4 +59,18 @@ public class ExhibitionConverter {
                 .filter(exhibition -> exhibition.getStatus() == status)
                 .count();
     }
+
+
+    public static  List<ExhibitionUser> converter2ExhibitionUserList(List<Exhibition> exhibitionList,UserInfo user_info){
+        return Optional.ofNullable(exhibitionList).orElse(Lists.newArrayList())
+                .stream()
+                .map(exhibition -> {
+                    ExhibitionUser exhibitionUser = new ExhibitionUser();
+                    BeanUtils.copyProperties(exhibition, exhibitionUser);
+                    exhibitionUser.setUser_id(String.valueOf(exhibition.getUser_id()));
+                    exhibitionUser.setUid(String.valueOf(exhibition.getUid()));
+                    exhibitionUser.setUser_info(user_info);
+                    return exhibitionUser;
+                }).collect(Collectors.toList());
+    }
 }
