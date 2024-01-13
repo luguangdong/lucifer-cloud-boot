@@ -39,7 +39,7 @@ public class ArticleController {
     public Result<Boolean> create(
             @RequestBody ArticleReq articleReq
     ) {
-        return Result.success(articleService.create(request,articleReq));
+        return Result.success("文章创建成功",articleService.create(request,articleReq));
     }
 
 
@@ -47,7 +47,7 @@ public class ArticleController {
     public Result<Boolean> delete(
             @RequestParam(value = "uid",required = false) String uid
     ) {
-        return Result.success(articleService.delete(request,uid));
+        return Result.success("文章删除成功",articleService.delete(request,uid));
     }
 
 

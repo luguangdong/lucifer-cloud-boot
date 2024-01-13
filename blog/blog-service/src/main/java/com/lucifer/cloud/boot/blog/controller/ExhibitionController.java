@@ -46,7 +46,7 @@ public class ExhibitionController {
     public Result<Boolean> create(
             @RequestBody ExhibitionReq exhibitionReq
     ) {
-        return Result.success(exhibitionService.create(request,exhibitionReq));
+        return Result.success("图片创建成功",exhibitionService.create(request,exhibitionReq));
     }
 
     @PostMapping("del")

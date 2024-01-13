@@ -27,7 +27,7 @@ public class StarController {
             @RequestParam(value = "star_type",required = false) String star_type,
             @RequestParam(value = "type",required = false) String type
     ) {
-        return Result.success(starService.star(request,uid,star_type,type));
+        return Result.success("1".equals(star_type)?"点赞成功":"取消点赞成功",starService.star(request,uid,star_type,type));
     }
 
 }

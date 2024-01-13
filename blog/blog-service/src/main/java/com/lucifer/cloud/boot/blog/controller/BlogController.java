@@ -43,20 +43,20 @@ public class BlogController {
     public Result<Boolean> create(
             @RequestBody BlogReq blogReq
     ) {
-        return Result.success(blogService.create(request,blogReq));
+        return Result.success("博客创建成功",blogService.create(request,blogReq));
     }
 
     @PostMapping("update")
     public Result<Boolean> update(
             @RequestBody BlogReq blogReq
     ) {
-        return Result.success(blogService.update(request,blogReq));
+        return Result.success("博客修改成功",blogService.update(request,blogReq));
     }
 
     @GetMapping("delete")
     public Result<Boolean> delete(
             @RequestParam(value = "uid",required = false) String uid
     ) {
-        return Result.success(blogService.delete(request,uid));
+        return Result.success("博客删除成功",blogService.delete(request,uid));
     }
 }
