@@ -28,11 +28,12 @@ public class CommentController {
 
     @GetMapping("info")
     public Result<CommentDto> info(
+            @RequestParam(value = "content_id",required = false) String content_id,
             @RequestParam(value = "page",required = false) Integer page,
             @RequestParam(value = "limit",required = false) Integer limit,
             @RequestParam(value = "type",required = false) String type
     ) {
-        return Result.success(commentService.info(request,page,limit,type));
+        return Result.success(commentService.info(request,content_id,page,limit,type));
     }
 
 

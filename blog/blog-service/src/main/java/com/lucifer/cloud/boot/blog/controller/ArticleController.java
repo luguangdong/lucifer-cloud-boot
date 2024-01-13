@@ -27,12 +27,13 @@ public class ArticleController {
 
     @GetMapping("info")
     public Result<ArticleDto> info(
+            @RequestParam(value = "uid",required = false) String uid,
             @RequestParam(value = "page",required = false) Integer page,
             @RequestParam(value = "limit",required = false) Integer limit,
             @RequestParam(value = "type",required = false) Integer type,
             @RequestParam(value = "sort",required = false) String sort
     ) {
-        return Result.success(articleService.info(request,page,limit,type,sort));
+        return Result.success(articleService.info(request,uid, page,limit,type,sort));
     }
 
     @PostMapping("create")

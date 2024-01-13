@@ -15,6 +15,7 @@ import com.lucifer.cloud.boot.blog.mapper.UserMapper;
 import com.lucifer.cloud.boot.blog.service.CommentService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
 
     @Override
-    public CommentDto info(HttpServletRequest request, Integer page, Integer limit, String type) {
+    public CommentDto info(HttpServletRequest request,String content_id, Integer page, Integer limit, String type) {
 
         Long userId = userSystem.userId(request);
         User user = userMapper.selectById(userId);
@@ -44,12 +45,14 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
         if(Objects.isNull(page) && Objects.isNull(limit)){
             commentList = list(Wrappers.lambdaQuery(Comment.class)
+                    .eq(StringUtils.isNotBlank(content_id),Comment::getContent_id,content_id)
                     .eq(Comment::getUser_id, userId)
                     .eq(Comment::getType,type)
             );
         }else {
             Page<Comment> rowPage = new Page<>(page, limit);
             Page<Comment> commentPage = this.baseMapper.selectPage(rowPage,Wrappers.lambdaQuery(Comment.class)
+                    .eq(StringUtils.isNotBlank(content_id),Comment::getContent_id,content_id)
                     .eq(Comment::getUser_id,userId)
                     .eq(Comment::getType,type)
 

@@ -56,10 +56,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     private LikesMapper  likesMapper;
 
     @Override
-    public ArticleDto info(HttpServletRequest request, Integer page, Integer limit, Integer type, String sort) {
+    public ArticleDto info(HttpServletRequest request,String uid, Integer page, Integer limit, Integer type, String sort) {
 
         Long userId = userSystem.userId(request);
-        Long uid = userSystem.uid(request);
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
 
@@ -67,11 +66,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         if(Objects.isNull(page) && Objects.isNull(limit)){
             articleList = list(Wrappers.lambdaQuery(Article.class)
                     .eq(Article::getUser_id, userId)
+                    .eq(StringUtils.isNotBlank(uid),Article::getUid,uid)
                     .last(StringUtils.isNotBlank(sort), "order by " + sort));
         }else {
             Page<Article> rowPage = new Page<>(page, limit);
             Page<Article> articlePage = this.baseMapper.selectPage(rowPage,Wrappers.lambdaQuery(Article.class)
                     .eq(Article::getUser_id,userId)
+                    .eq(StringUtils.isNotBlank(uid),Article::getUid,uid)
                     .last(StringUtils.isNotBlank(sort),"order by "+ sort)
             );
             articleList = articlePage.getRecords();

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface CommentService extends IService<Comment> {
 
 
-    CommentDto info(HttpServletRequest request, Integer page, Integer limit, String type);
+    CommentDto info(HttpServletRequest request,String content_id, Integer page, Integer limit, String type);
 
     Boolean create(HttpServletRequest request, String contentId, String content, String type);
 }
