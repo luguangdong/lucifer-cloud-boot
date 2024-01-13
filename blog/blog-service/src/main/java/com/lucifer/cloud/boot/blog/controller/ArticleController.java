@@ -32,7 +32,6 @@ public class ArticleController {
             @RequestParam(value = "type",required = false) Integer type,
             @RequestParam(value = "sort",required = false) String sort
     ) {
-
         return Result.success(articleService.info(request,page,limit,type,sort));
     }
 
@@ -40,8 +39,15 @@ public class ArticleController {
     public Result<Boolean> create(
             @RequestBody ArticleReq articleReq
     ) {
-
         return Result.success(articleService.create(request,articleReq));
+    }
+
+
+    @GetMapping("delete")
+    public Result<Boolean> delete(
+            @RequestParam(value = "uid",required = false) String uid
+    ) {
+        return Result.success(articleService.delete(request,uid));
     }
 
 

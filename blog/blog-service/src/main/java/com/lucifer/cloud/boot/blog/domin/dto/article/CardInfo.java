@@ -17,6 +17,8 @@ public class CardInfo {
 
     private Long fans;
 
+    private Long follow;
+
     private List<String> follow_ids;
 
     private List<String> star_ids;

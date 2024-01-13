@@ -28,35 +28,35 @@ public class BlogController {
     private BlogService blogService;
 
     @GetMapping("info")
-    public Result<BlogInfoDto> blogInfo(
+    public Result<BlogInfoDto> info(
             @RequestParam(value = "_t",required = false) Long _t,
             @RequestParam(value = "uids",required = false) String uid,
             @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
             @RequestParam(value = "limit",required = false,defaultValue = "1") Integer limit
     ) {
 
-        return Result.success(blogService.blogInfo(request,_t,uid,page,limit));
+        return Result.success(blogService.info(request,_t,uid,page,limit));
     }
 
 
     @PostMapping("create")
-    public Result<Boolean> blogCreate(
+    public Result<Boolean> create(
             @RequestBody BlogReq blogReq
     ) {
-        return Result.success(blogService.blogCreate(request,blogReq));
+        return Result.success(blogService.create(request,blogReq));
     }
 
     @PostMapping("update")
-    public Result<Boolean> blogUpdate(
+    public Result<Boolean> update(
             @RequestBody BlogReq blogReq
     ) {
-        return Result.success(blogService.blogUpdate(request,blogReq));
+        return Result.success(blogService.update(request,blogReq));
     }
 
     @GetMapping("delete")
-    public Result<Boolean> blogDelete(
+    public Result<Boolean> delete(
             @RequestParam(value = "uid",required = false) String uid
     ) {
-        return Result.success(blogService.blogDelete(request,uid));
+        return Result.success(blogService.delete(request,uid));
     }
 }

@@ -49,7 +49,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     private UploadMapper uploadMapper;
 
     @Override
-    public BlogInfoDto blogInfo(HttpServletRequest request, Long _t,String uid, Integer page, Integer limit) {
+    public BlogInfoDto info(HttpServletRequest request, Long _t,String uid, Integer page, Integer limit) {
         Long userId = userSystem.userId(request);
         User user = userMapper.selectById(userId);
         UserInfo user_info = UserConverter.convertInfo(user);
@@ -68,7 +68,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     }
 
     @Override
-    public Boolean blogCreate(HttpServletRequest request, BlogReq blogReq) {
+    public Boolean create(HttpServletRequest request, BlogReq blogReq) {
         Long userId = userSystem.userId(request);
         Blog blog = BlogConverter.convertReq2blog(blogReq,userId);
         Tag tag = TagConverter.convertBlogReq2Tag(blogReq,userId);
@@ -81,7 +81,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     }
 
     @Override
-    public Boolean blogUpdate(HttpServletRequest request, BlogReq blogReq) {
+    public Boolean update(HttpServletRequest request, BlogReq blogReq) {
         Blog blog = BlogConverter.convertReq2Eeditblog(blogReq);
         return update(Wrappers.lambdaUpdate(Blog.class)
                 .set(Blog::getTitle,blog.getTitle())
@@ -92,7 +92,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     }
 
     @Override
-    public Boolean blogDelete(HttpServletRequest request, String uid) {
+    public Boolean delete(HttpServletRequest request, String uid) {
         Long userId = userSystem.userId(request);
         boolean remove = remove(Wrappers.lambdaQuery(Blog.class)
                 .eq(Blog::getUid, Long.parseLong(uid))

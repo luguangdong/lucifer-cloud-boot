@@ -12,13 +12,13 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface BlogService extends IService<Blog> {
 
 
-    BlogInfoDto blogInfo(HttpServletRequest request, Long _t,String uid, Integer page, Integer limit);
+    BlogInfoDto info(HttpServletRequest request, Long _t,String uid, Integer page, Integer limit);
 
 
-    Boolean blogCreate(HttpServletRequest request, BlogReq blogReq);
+    Boolean create(HttpServletRequest request, BlogReq blogReq);
 
-    Boolean blogUpdate(HttpServletRequest request,BlogReq blogReq);
+    Boolean update(HttpServletRequest request,BlogReq blogReq);
 
-    Boolean blogDelete(HttpServletRequest request,String uid);
+    Boolean delete(HttpServletRequest request,String uid);
 
 }

@@ -13,4 +13,6 @@ public interface ArticleService extends IService<Article> {
     ArticleDto info(HttpServletRequest request, Integer page, Integer limit, Integer type, String sort);
 
     Boolean create(HttpServletRequest request, ArticleReq articleReq);
+
+    Boolean delete(HttpServletRequest request, String uid);
 }

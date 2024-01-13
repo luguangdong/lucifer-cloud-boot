@@ -14,7 +14,7 @@ public class ArticleInfo {
     /**
      * 评论数
      */
-    private Integer comment;
+    private Long comment;
 
 
     /**
@@ -47,7 +47,7 @@ public class ArticleInfo {
     /**
      * 点赞数
      */
-    private Integer thumbs_up;
+    private Long thumbs_up;
 
     /**
      * 文章标题
