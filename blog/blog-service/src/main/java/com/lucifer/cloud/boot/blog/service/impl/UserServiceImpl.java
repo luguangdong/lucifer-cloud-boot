@@ -30,6 +30,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -97,6 +98,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        wrapper = (UpdateWrapper)GenerateUtils.generateUpdateWrapper(userReq, wrapper, "uid");
 //        return update(wrapper);
         return update(Wrappers.lambdaUpdate(User.class)
+                .set(User::getUpdated_at, LocalDateTime.now())
                 .set(StringUtils.isNotBlank(userReq.getAvatar_url()),User::getAvatar_url,userReq.getAvatar_url())
                 .set(Objects.nonNull(userReq.getGender()),User::getGender,userReq.getGender())
                 .set(StringUtils.isNotBlank(userReq.getGit_hub()),User::getGit_hub,userReq.getGit_hub())
@@ -117,6 +119,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Long userId = userSystem.userId(request);
         User user = new User();
         user.setId(userId.longValue());
+        user.setUpdated_at(LocalDateTime.now());
         user.setPassword(password);
         return  updateById(user);
     }

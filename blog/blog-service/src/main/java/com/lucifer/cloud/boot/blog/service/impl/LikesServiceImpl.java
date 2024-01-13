@@ -10,6 +10,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -31,7 +32,12 @@ public class LikesServiceImpl extends ServiceImpl<LikesMapper, Likes> implements
             Likes likes = LikesConverter.converterReq2Likes(userId, uid, likesType, type);
             return save(likes);
         }else {
-            return update(Wrappers.lambdaUpdate(Likes.class).set(Likes::getLikes_type,likesType).eq(Likes::getUser_id,userId).eq(Likes::getLikes_id,uid).eq(Likes::getType,type));
+            return update(Wrappers.lambdaUpdate(Likes.class)
+                    .set(Likes::getUpdated_at, LocalDateTime.now())
+                    .set(Likes::getLikes_type,likesType)
+                    .eq(Likes::getUser_id,userId)
+                    .eq(Likes::getLikes_id,uid)
+                    .eq(Likes::getType,type));
         }
     }
 }

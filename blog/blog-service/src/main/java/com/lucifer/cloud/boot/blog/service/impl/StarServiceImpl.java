@@ -13,6 +13,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -39,9 +40,15 @@ public class StarServiceImpl extends ServiceImpl<StarMapper, Star> implements St
             Star star = StarConverter.converterReq2Star(userId,uid, star_type, type);
             starRes = save(star);
         }else {
-            starRes = update(Wrappers.lambdaUpdate(Star.class).set(Star::getStar_type,star_type).eq(Star::getUser_id,userId).eq(Star::getStar_id,uid).eq(Star::getType,type));
+            starRes = update(Wrappers.lambdaUpdate(Star.class)
+                    .set(Star::getUpdated_at, LocalDateTime.now())
+                    .set(Star::getStar_type,star_type)
+                    .eq(Star::getUser_id,userId)
+                    .eq(Star::getStar_id,uid)
+                    .eq(Star::getType,type));
         }
         exhibitionMapper.update(new Exhibition(),Wrappers.lambdaUpdate(Exhibition.class)
+                .set(Exhibition::getUpdated_at,LocalDateTime.now())
                 .setSql(BlogConstant.STAR_TYPE.equals(star_type) ?  "`thumbs_up`=`thumbs_up`+1":"`thumbs_up`=`thumbs_up`-1").eq(Exhibition::getUid,uid)
                 .eq(Exhibition::getUser_id,userId));
 

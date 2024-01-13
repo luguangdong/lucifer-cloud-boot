@@ -84,6 +84,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements Bl
     public Boolean update(HttpServletRequest request, BlogReq blogReq) {
         Blog blog = BlogConverter.convertReq2Eeditblog(blogReq);
         return update(Wrappers.lambdaUpdate(Blog.class)
+                .set(Blog::getUpdated_at,LocalDateTime.now())
                 .set(Blog::getTitle,blog.getTitle())
                 .set(Blog::getSub_title,blog.getSub_title())
                 .set(Blog::getContent,blog.getContent())
