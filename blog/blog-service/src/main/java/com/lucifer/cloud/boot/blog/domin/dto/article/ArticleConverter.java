@@ -30,8 +30,9 @@ public class ArticleConverter {
                 .stream().map(article -> {
                     ArticleInfo articleInfo = new ArticleInfo();
                     BeanUtils.copyProperties(article,articleInfo);
-                    articleInfo.setUserInfo(user_info);
+                    articleInfo.setUser_info(user_info);
                     articleInfo.setUser_id(String.valueOf(userId));
+                    articleInfo.setUid(String.valueOf(article.getUid()));
                     return articleInfo;
                 }).collect(Collectors.toList());
         CardInfo cardInfo = new CardInfo();

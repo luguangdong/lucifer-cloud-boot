@@ -27,7 +27,7 @@ public class ArticleInfo {
      */
     private String cover;
 
-    private String created;
+    private Long created;
 
     /**
      * 背景图片
@@ -56,7 +56,7 @@ public class ArticleInfo {
 
     private String uid;
 
-    private String updated;
+    private Long updated;
 
     /**
      * 用户ID
@@ -64,6 +64,6 @@ public class ArticleInfo {
     private String user_id;
 
 
-    private UserInfo userInfo;
+    private UserInfo user_info;
 
 }

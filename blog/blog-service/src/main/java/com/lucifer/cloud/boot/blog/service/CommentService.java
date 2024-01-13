@@ -1,6 +1,8 @@
 package com.lucifer.cloud.boot.blog.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lucifer.cloud.boot.blog.domin.bo.Comment;
+import com.lucifer.cloud.boot.blog.domin.dto.comment.CommentDto;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author lucifer
@@ -9,4 +11,7 @@ import com.lucifer.cloud.boot.blog.domin.bo.Comment;
 public interface CommentService extends IService<Comment> {
 
 
+    CommentDto info(HttpServletRequest request, Integer page, Integer limit, String type);
+
+    Boolean create(HttpServletRequest request, String contentId, String content, String type);
 }

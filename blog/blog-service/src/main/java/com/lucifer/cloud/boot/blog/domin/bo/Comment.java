@@ -32,7 +32,7 @@ public class Comment extends BaseBo implements Serializable {
     private String content;
 
     /**
-     * 被评论 id
+     * 被评论文章 id
      */
     private Long content_id;
 
