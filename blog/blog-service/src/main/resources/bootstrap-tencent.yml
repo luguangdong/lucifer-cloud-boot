@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: blog
+  cloud:
+    nacos:
+      config:
+        server-addr: 43.140.224.40:8848
+        username: tencent
+        password: tencent
+        namespace: ee025199-9281-4b2d-8107-4885d6cf1f67
+        extension-configs:
+          - dataId: blog-tencent.yaml
+            group: tencent
+            refresh: true
+          - dataId: blog-dubbo-tencent.yaml
+            group: tencent
+            refresh: true
+        refresh-enabled: true
+  config:
+    activate:
+      on-profile:
+        - tencent

@@ -1,0 +1,21 @@
+spring:
+  application: blog
+  cloud:
+    nacos:
+      config:
+        server-addr: lucifer-auth.online:8848
+        username: lucifer
+        password: lucifer
+        namespace: b5848513-d59f-4601-b1e4-d5453441f1aa
+        extension-configs:
+          - dataId: blog-local.yaml
+            group: local
+            refresh: true
+          - dataId: blog-dubbo-local.yaml
+            group: local
+            refresh: true
+        refresh-enabled: true
+  config:
+    activate:
+      on-profile:
+        - local

@@ -18,7 +18,6 @@ public class TestController {
     }
 
     @GetMapping("/test02")
-    @PreAuthorize("hasAuthority('SCOPE_message.write')")
     public String test02() {
         return "test02";
     }

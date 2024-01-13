@@ -12,6 +12,9 @@ spring:
           - dataId: ums-tencent.yaml
             group: tencent
             refresh: true
+          - dataId: ums-dubbo-tencent.yaml
+            group: tencent
+            refresh: true
         refresh-enabled: true
   config:
     activate:

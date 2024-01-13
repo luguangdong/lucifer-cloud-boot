@@ -5,7 +5,7 @@ pipeline {
             gitUrl = "https://gitee.com/luguangdong/lucifer-cloud-boot.git"
             gitCredentialsId = "695eef5c-1a0b-4338-b2d3-4ec08ea1f2b8"
             publisher_hostName = "lucifer-cloud-aliyun"
-            mvn_home = "/data/maven/maven-3.9.5";
+            mvn_home = "/data/maven/maven-3.9.6";
      }
 
     // hidden 标签jenkins需要安装 Hidden Parameter 插件
@@ -41,26 +41,57 @@ pipeline {
             }
         }
 
-         // 将jar文件传到服务器上
-         stage('transfer jar file to remoteDirectory...') {
-             steps {
-                sh '''cp ./ums/ums-service/target/*.jar ./'''
-                sh '''cp ./deploy/ums/gitee/start.sh ./'''
+          // 将jar文件传到服务器上
+          stage('transfer jar file to remoteDirectory...') {
+              steps {
+                 sh '''cp ./ums/ums-service/target/*.jar ./'''
+                 sh '''cp ./deploy/ums/gitee/start.sh ./'''
 
-                sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
-                                     execCommand: '',
-                                     execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_startFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                 sshPublisher(
+                 publishers: [sshPublisherDesc(configName: "${publisher_hostName}",
+                 transfers: [sshTransfer(cleanRemote: false,
+                 excludes: '',
+                 execCommand: '',
+                 execTimeout: 120000,
+                 flatten: false,
+                 makeEmptyDirs: false,
+                 noDefaultExcludes: false,
+                 patternSeparator: '[, ]+',
+                 remoteDirectory: "${publisher_remoteDirectory}",
+                 remoteDirectorySDF: false,
+                 removePrefix: '',
+                 sourceFiles: "${publisher_startFiles}",
+                 usePty: true)],
+                 usePromotionTimestamp: false,
+                 useWorkspaceInPromotion: false,
+                 verbose: true)])
 
 
-                sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
-                execCommand: '''
-                cd ${publisher_remoteDirectory}
-                mv ${publisher_sourceFiles} ${appName}
-                chmod 777  start.sh
-                ./start.sh
-                ''',
-                execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_sourceFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
-             }
-         }
+                 sshPublisher(
+                 publishers: [sshPublisherDesc(configName: "${publisher_hostName}",
+                 transfers: [sshTransfer(cleanRemote: false,
+                 excludes: '',
+                 execCommand: '''
+                 cd ${publisher_remoteDirectory}
+                 mv ${publisher_sourceFiles} ${appName}
+                 chmod 777  start.sh
+                 sh start.sh
+                 ps -aux | grep -v grep | grep java
+                 ''',
+                 execTimeout: 120000,
+                 flatten: false,
+                 makeEmptyDirs: false,
+                 noDefaultExcludes: false,
+                 patternSeparator: '[, ]+',
+                 remoteDirectory: "${publisher_remoteDirectory}",
+                 remoteDirectorySDF: false,
+                 removePrefix: '',
+                 sourceFiles: "${publisher_sourceFiles}",
+                 usePty: true)],
+                 usePromotionTimestamp: false,
+                 useWorkspaceInPromotion: false,
+                 verbose: true)])
+              }
+          }
     }
 }
